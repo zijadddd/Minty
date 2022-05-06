@@ -70,6 +70,7 @@ body {
     margin: auto;
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 
 #section-food {
