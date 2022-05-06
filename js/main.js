@@ -11,15 +11,14 @@ setInterval(() => {
     ];
 
     message.innerHTML = messages[(counterForNewsMessage = (counterForNewsMessage+1) % messages.length)];
-}, 5000);
+}, 3000);
 
 const deleteNewsMessage = () => {
     let div = document.querySelector("#headerMessage");
     div.style.display = "none";
-    div = document.querySelector("#welcomeSection");
-    div.style.height = "93vh";
-}
 
+}
+/*
 document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } 
     });
 });
-
+*/
 fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
     .then(res => {
         if(!res.ok) {
