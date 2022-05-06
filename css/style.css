@@ -38,6 +38,10 @@
     align-items: center;
 }
 
+#welcomeSection p {
+    text-align: center;
+}
+
 #logoMinty {
     width: 300px;
     height: 200px;
