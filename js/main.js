@@ -53,7 +53,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                     <div class="card-body">
                         <h5 class="card-title">${element.name}</h5>
                         <p class="card-text">Cijena: ${element.price} KM</p>
-                        <a href="#" class="btn" style="background-color: #ff3f34"><span class="text-light">Naruči</span></a>
+                        <a href="#" class="btn" style="background-color: #F66B0E"><span class="text-light">Naruči</span></a>
                     </div>
                 </div>                    
             `
