@@ -1,0 +1,73 @@
+#headerMessage {
+    width: 100%;
+    height: 40px;
+    background-color: #ff3f34;
+    display: flex;
+    align-items: center;
+}
+
+#headerMessageNews {
+    width: 99%;
+    display: flex;
+    justify-content: center;
+}
+
+.headerMessageButton {
+    border: none;
+    background-color: #ff3f34;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.headerMessageButton:hover {
+    color: #1e272e;
+}
+
+#content {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+
+#welcomeSection {
+    width: 100%;
+    height: 89vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoMinty {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+#logoMinty h1 {
+    font-size: 80px;
+}
+
+#navbar_top {
+    background-color: white;
+    width: 100%;
+    margin: auto;
+}
+
+#sections {
+    width: 100%;
+    margin-top: 2vh;
+}
+
+#sections h1 {
+    text-align: center;
+}
+
+#food {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

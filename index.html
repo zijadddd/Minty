@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minty</title>
+
+    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="headerMessage" class="text-light">
+        <div id="headerMessageNews">
+            <span>🔥🔥🔥<span id="newsMessage">Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.</span></span>
+        </div>
+        <button href="" onclick="deleteNewsMessage()" class="headerMessageButton text-light">x</button>
+    </div>
+
+    <div id="content">
+        <div id="welcomeSection">
+            <div id="logoMinty">
+                <h1 class="text-dark"><span style="color: #00d8d6">M</span>inty</h1>
+            </div>
+            <p class="text-dark">Naš cilj je omogućiti nevjerojatan okus po pristupačnim cijenama u gostoljubivoj i modernoj atmosferi..</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light" id="navbar_top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><span style="color: #00d8d6">M</span>inty</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Početna</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#food">Hrana</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Osoblje</a>
+                        </li>
+                    </ul>
+                    <a class="nav-link text-dark" href="#">Prijava</a>
+                    <a href="#" class="btn" style="background-color: #ff3f34"><span class="text-light">Registracija</span></a>
+                </div>
+            </div>
+        </nav>
+        <div id="sections">
+            <h1 class="text-dark">Hrana</h1>
+            <div id="food"></div>
+        </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
