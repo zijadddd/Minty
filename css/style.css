@@ -8,6 +8,7 @@
     #content {
         width: 80%;
     }
+
 }
 
 .text-dark {
@@ -94,4 +95,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#loginForm {
+    background-color: white;
+    border-radius: 12px;
+    top: 25%;
+    left: 25%;
+    z-index: 100;
 }

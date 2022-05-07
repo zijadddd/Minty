@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
 </head>
 <body>
+
+    <div id="loginForm"></div>
+
     <div id="content">
         <div id="headerMessage" class="text-light">
             <div id="headerMessageNews">
@@ -42,13 +45,15 @@
                             <a class="nav-link text-light" href="#">Osoblje</a>
                         </li>
                     </ul>
-                    <a href="#" class="btn" style="background-color: #F66B0E"><span class="text-light">Prijava</span></a>
+                    <a href="#" class="btn" style="background-color: #F66B0E" onclick="login()" id="loginButton"><span class="text-light">Prijava</span></a>
+                    <a href="#" class="btn" style="background-color: #F66B0E; display: none;" onclick="logout()" id="logoutButton"><span class="text-light">Odjava</span></a>
                 </div>
             </div>
         </nav>
         <div id="section-food">
             <h1 class="text-dark">Hrana</h1>
             <div id="food"></div>
+            <br><a href="#" class="btn rootButtons" style="background-color: #F66B0E; display: none;"><span class="text-light">Dodaj hranu</span></a>
         </div>
     </div>
 
