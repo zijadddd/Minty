@@ -1,4 +1,5 @@
 let counterForNewsMessage = 0;
+let root = false;
 
 setInterval(() => {
     let message = document.querySelector('#newsMessage');
@@ -90,22 +91,8 @@ const loginForm = () => {
             temp.style.display = 'none';
             temp = document.querySelector('#content');
             temp.style.filter = 'blur(0px)';
-
-            let popup = document.querySelector('#loginoutPopUp');
-            popup.style.display = 'flex';
-            popup.style.justifyContent = 'center';
-            popup.style.alignItems = 'center';
-            popup.innerText = 'Uspješno ste prijavljeni.';
-        
-            temp = document.querySelector('#content');
-            temp = document.querySelector('#content');
-            temp.style.filter = 'blur(5px)';
-        
-            setTimeout(() => {
-                popup.style.display = 'none';
-                temp.style.filter = 'blur(0px)';
-            }, 2000);
-
+            root = true;
+            popup();
             rootControls();
         } else {
             document.querySelector('#errorMessage').innerText = 'Nepravilna lozinka.';
@@ -139,12 +126,18 @@ const logout = () => {
 
     loginButton.style.display = 'inline-block';
     logoutButton.style.display = 'none';
-    
+    root = false;
+    popup();
+}
+
+const popup = () => {
     let popup = document.querySelector('#loginoutPopUp');
     popup.style.display = 'flex';
     popup.style.justifyContent = 'center';
     popup.style.alignItems = 'center';
-    popup.innerText = 'Uspješno ste odjavljeni.';
+    popup.style.textAlign = 'center';
+    if (root) popup.innerText = 'Uspješno ste prijavljeni.';
+    else popup.innerText = 'Uspješno ste odjavljeni.'
 
     let temp = document.querySelector('#content');
     temp = document.querySelector('#content');
