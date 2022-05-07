@@ -1,5 +1,13 @@
-body {
-    background-color: #EFEFEF;
+@media only screen and (max-width: 960px) {
+    #content {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 961px) {
+    #content {
+        width: 80%;
+    }
 }
 
 .text-dark {
@@ -32,7 +40,6 @@ body {
 }
 
 #content {
-    width: 80%;
     height: 100%;
     margin: auto;
     background-color: #EFEFEF;
@@ -75,7 +82,8 @@ body {
 
 #section-food {
     width: 100%;
-    margin-top: 1vh;
+    margin-top: 2vh;
+    padding: 1vh;
 }
 
 #section-food h1 {
