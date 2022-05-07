@@ -38,7 +38,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                     <div class="card-body">
                         <h5 class="card-title">${element.name}</h5>
                         <p class="card-text">Cijena: ${element.price} KM</p>
-                        <a href="#" class="btn" style="background-color: #F66B0E"><span class="text-light">Naruči</span></a>
+                        <a href="#" class="btn" style="background-color: #F66B0E;"><span class="text-light">Naruči</span></a>
                         <a href="#" class="btn rootButtons" style="background-color: #0AA1DD; display: none;"><span class="text-light">Uredi</span></a>
                         <a href="#" class="btn rootButtons" style="background-color: #F32424; display: none;"><span class="text-light">Izbriši</span></a>
                     </div>
@@ -52,10 +52,6 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 const login = () => {
     let temp = document.querySelector('#loginForm');
     temp.style.display = 'block';
-    temp.style.position = 'fixed';
-    temp.style.width = '50%';
-    temp.style.height = '15rem';
-    temp.style.padding = '1%';
     temp.innerHTML = `
         <form>
             <div class="mb-3">
@@ -94,6 +90,22 @@ const loginForm = () => {
             temp.style.display = 'none';
             temp = document.querySelector('#content');
             temp.style.filter = 'blur(0px)';
+
+            let popup = document.querySelector('#loginoutPopUp');
+            popup.style.display = 'flex';
+            popup.style.justifyContent = 'center';
+            popup.style.alignItems = 'center';
+            popup.innerText = 'Uspješno ste prijavljeni.';
+        
+            temp = document.querySelector('#content');
+            temp = document.querySelector('#content');
+            temp.style.filter = 'blur(5px)';
+        
+            setTimeout(() => {
+                popup.style.display = 'none';
+                temp.style.filter = 'blur(0px)';
+            }, 2000);
+
             rootControls();
         } else {
             document.querySelector('#errorMessage').innerText = 'Nepravilna lozinka.';
@@ -113,7 +125,7 @@ const rootControls = () => {
     }
 
     loginButton.style.display = 'none';
-    logoutButton.style.display = 'block';
+    logoutButton.style.display = 'inline-block';
 }
 
 const logout = () => {
@@ -125,6 +137,21 @@ const logout = () => {
         cards[i].style.display = 'none';
     }
 
-    loginButton.style.display = 'block';
+    loginButton.style.display = 'inline-block';
     logoutButton.style.display = 'none';
+    
+    let popup = document.querySelector('#loginoutPopUp');
+    popup.style.display = 'flex';
+    popup.style.justifyContent = 'center';
+    popup.style.alignItems = 'center';
+    popup.innerText = 'Uspješno ste odjavljeni.';
+
+    let temp = document.querySelector('#content');
+    temp = document.querySelector('#content');
+    temp.style.filter = 'blur(5px)';
+
+    setTimeout(() => {
+        popup.style.display = 'none';
+        temp.style.filter = 'blur(0px)';
+    }, 2000);
 }

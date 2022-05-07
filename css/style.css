@@ -103,4 +103,33 @@
     top: 25%;
     left: 25%;
     z-index: 100;
+    position: fixed;
+    width: 50%;
+    height: 15rem;
+    padding: 1%;
+    display: none;
+}
+
+#loginoutPopUp {
+    width: 30%;
+    height: 10vh;
+    background-color: white;
+    border-radius: 12px;
+    position: fixed;
+    display: none;
+    top: 10%;
+    left: 35%;
+    z-index: 100;
+    animation: fadeIn 0.8s ease-in both;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -20%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
 }
