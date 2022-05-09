@@ -133,3 +133,15 @@
 		transform: translate3d(0, 0, 0);
 	}
 }
+
+#addFood {
+    width: 50%;
+    background-color: white;
+    border-radius: 12px;
+    position: fixed;
+    display: none;
+    top: 10%;
+    left: 25%;
+    z-index: 100;
+    padding: 1%;
+}

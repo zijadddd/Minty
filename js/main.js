@@ -1,5 +1,5 @@
 let counterForNewsMessage = 0;
-let root = false;
+var root = false;
 
 setInterval(() => {
     let message = document.querySelector('#newsMessage');
@@ -54,7 +54,7 @@ const login = () => {
     let temp = document.querySelector('#loginForm');
     temp.style.display = 'block';
     temp.innerHTML = `
-        <form>
+        <form id="forma">
             <div class="mb-3">
                 <label class="form-label">Username</label>
                 <input type="text" class="form-control" id="loginUsername" placeholder="Enter your username">
@@ -64,7 +64,9 @@ const login = () => {
                 <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password">
             </div>
             <p id="errorMessage" class="text-danger"></p>
-            <button type="submit" class="btn" style="background-color: #F66B0E; color: white;" onclick="loginForm()">Submit</button>
+            <div>
+                <input type="button" class="btn" style="background-color: #F66B0E; color: white;" onclick="loginForm()" value="Submit">
+            </div>
         </form>
     `;
 
@@ -85,8 +87,8 @@ const loginForm = () => {
     let loginUsername = document.querySelector('#loginUsername').value;
     let loginPassword = document.querySelector('#loginPassword').value;
 
-    if (loginUsername == 'root') {
-        if (loginPassword == 'root') {
+    if (loginUsername === 'root') {
+        if (loginPassword === 'root') {
             let temp = document.querySelector('#loginForm');
             temp.style.display = 'none';
             temp = document.querySelector('#content');
