@@ -12,49 +12,52 @@
 </head>
 <body>
 
-    <div id="loginForm"></div>
-    <div id="loginoutPopUp"></div>
+    <div id="login"></div>
+    <div id="pop-up"></div>
 
     <div id="content">
-        <div id="headerMessage" class="text-light">
-            <div id="headerMessageNews">
-                <span>🔥🔥🔥<span id="newsMessage">Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.</span></span>
+        <div id="content__header" class="text-light">
+            <div id="content__header__news-feed">
+                <span>🔥🔥🔥<span id="content__header__news-feed__message">Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.</span></span>
             </div>
-            <button href="" onclick="deleteNewsMessage()" class="headerMessageButton text-light">x</button>
+            <button href="" onclick="deleteNewsMessage()" class="content__header__news-feed__button text-light">x</button>
         </div>
-        <div id="welcomeSection">
-            <div id="logoMinty">
-                <h1 class="text-dark"><span style="color: #F66B0E">M</span><span class="text-dark">inty</span></h1>
+
+        <div id="content__welcome-section">
+            <div id="content__welcome-section__logo">
+                <h1 class="text-dark h1"><span style="color: #F66B0E">M</span><span class="text-dark">inty</span></h1>
             </div>
-            <p class="text-dark">Naš cilj je omogućiti nevjerojatan okus po pristupačnim cijenama u gostoljubivoj i modernoj atmosferi..</p>
+            <p id="content__welcome-section__greetings">Naš cilj je omogućiti nevjerojatan okus po pristupačnim cijenama u gostoljubivoj i modernoj atmosferi..</p>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light" id="navbar_top">
+
+        <nav class="navbar navbar-expand-lg navbar-light" id="content__navbar">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><span style="color: #F66B0E">M</span><span class="text-light">inty</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarText">
+                <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active text-light" aria-current="page" href="#">Početna</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#section-food">Hrana</a>
+                            <a class="nav-link text-light" href="#content__food">Hrana</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="#">Osoblje</a>
                         </li>
                     </ul>
-                    <div class="btn" style="background-color: #F66B0E" onclick="login()" id="loginButton"><span class="text-light">Prijava</span></div>
-                    <a href="#" class="btn" style="background-color: #F66B0E; display: none;" onclick="logout()" id="logoutButton"><span class="text-light">Odjava</span></a>
+                    <div class="btn" style="background-color: #F66B0E" onclick="login()" id="content__navbar__navbar-collapse__login-button"><span class="text-light">Prijava</span></div>
+                    <a href="#" class="btn" style="background-color: #F66B0E; display: none;" onclick="logout()" id="content__navbar__navbar-collapse__logout-button"><span class="text-light">Odjava</span></a>
                 </div>
             </div>
         </nav>
-        <div id="section-food">
-            <h1 class="text-dark">Hrana</h1>
-            <div id="food"></div>
-            <br><a href="#" class="btn rootButtons" style="background-color: #F66B0E; display: none;"><span class="text-light">Dodaj hranu</span></a>
+
+        <div id="content__food">
+            <h1 id="content__food__heading" class="text-dark">Hrana</h1>
+            <div id="content__food__cards"></div>
+            <br><a href="#" class="btn content__food__root-buttons" style="background-color: #F66B0E; display: none;"><span class="text-light">Dodaj hranu</span></a>
         </div>
     </div>
 
