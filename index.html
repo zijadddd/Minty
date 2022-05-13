@@ -7,13 +7,39 @@
     <title>Minty</title>
 
     <link rel="icon" type="image/x-icon" href="./img/logo.png">
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-    <div id="login"></div>
-    <div id="pop-up"></div>
+    <div class="alert alert-primary" role="alert" id="pop-up"></div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Prijava</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="username" class="col-form-label">Username:</label>
+                            <input type="text" class="form-control" id="username" placeholder="Unesite vaš username...">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="col-form-label">Šifra:</label>
+                            <input type="text" class="form-control" id="password" placeholder="Unesite vašu šifru...">
+                        </div>
+                    </form>
+                    <p style="display: none;" id="warning-message" class="text-warning"></p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary" onclick="loginCheck()" id="loginButton">Prijavi se</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="content">
         <div id="content__header" class="text-light">
@@ -25,18 +51,18 @@
 
         <div id="content__welcome-section">
             <div id="content__welcome-section__logo">
-                <h1 class="text-dark h1"><span style="color: #F66B0E">M</span><span class="text-dark">inty</span></h1>
+                <h1 class="text-dark h1"><span style="color: #38d9a9">M</span><span class="text-dark">inty</span></h1>
             </div>
             <p id="content__welcome-section__greetings">Naš cilj je omogućiti nevjerojatan okus po pristupačnim cijenama u gostoljubivoj i modernoj atmosferi..</p>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light" id="content__navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><span style="color: #F66B0E">M</span><span class="text-light">inty</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#"><span style="color: #38d9a9">M</span><span class="text-light">inty</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active text-light" aria-current="page" href="#">Početna</a>
@@ -48,8 +74,10 @@
                             <a class="nav-link text-light" href="#">Osoblje</a>
                         </li>
                     </ul>
-                    <div class="btn" style="background-color: #F66B0E" onclick="login()" id="content__navbar__navbar-collapse__login-button"><span class="text-light">Prijava</span></div>
-                    <a href="#" class="btn" style="background-color: #F66B0E; display: none;" onclick="logout()" id="content__navbar__navbar-collapse__logout-button"><span class="text-light">Odjava</span></a>
+                    <form class="d-flex">
+                        <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" id="content__navbar__navbar-collapse__login-button">Prijava</a>
+                        <a href="#" class="btn" style="background-color: #38d9a9; display: none;" onclick="logout()" id="content__navbar__navbar-collapse__logout-button"><span class="text-light">Odjava</span></a>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -57,7 +85,7 @@
         <div id="content__food">
             <h1 id="content__food__heading" class="text-dark">Hrana</h1>
             <div id="content__food__cards"></div>
-            <br><a href="#" class="btn content__food__root-buttons" style="background-color: #F66B0E; display: none;"><span class="text-light">Dodaj hranu</span></a>
+            <br><a href="#" class="btn content__food__root-buttons" style="background-color: #38d9a9; display: none;"><span class="text-light">Dodaj hranu</span></a>
         </div>
 
     </div>

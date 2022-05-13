@@ -1,53 +1,52 @@
 let counterForNewsMessage = 0;
-let root = false;
 
 setInterval(() => {
-    let message = document.querySelector('#content__header__messages__message');
+    let message = document.querySelector('#content__header__news-feed__message');
 
     const messages = [
         'Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.',
         'Porcija u svakoj ruci.',
         'Budi inspiriran da napraviš razliku komad po komad pizze.',
         'Naša misija je stvoriti zdravije društvo povezujući ljude s pravom hranom.',
-        'Želite vidjeti source kod naše stranice ? Nema problema, pritisnite <a href="https://github.com/zijadddd/Minty" class="text-light">ovdje</a> !'
+        'Želite vidjeti source kod naše stranice ? Nema problema, pritisnite <a href="https://github.com/zijadddd/Minty" class="links">ovdje</a> !'
     ];
 
     message.innerHTML = messages[(counterForNewsMessage = (counterForNewsMessage+1) % messages.length)];
-}, 3000);
+}, 5000);
 
 const deleteNewsMessage = () => {
-    let div = document.querySelector("#content__header__messages__message");
+    let div = document.querySelector("#content__header");
     div.style.display = "none";
 }
 
 fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
-    .then(res => {
-        if(!res.ok) {
-            throw Error('[GRESKA] Dogodila se greska.');
-        } 
-        return res.json();
-    })
-    .then(data => {
-        const cardList = document.querySelector('#content__food__cards');
-        let cards = '';
+.then(res => {
+    if(!res.ok) {
+        throw Error('[GRESKA] Dogodila se greska.');
+    } 
+    return res.json();
+})
+.then(data => {
+    const cardList = document.querySelector('#content__food__cards');
+    let cards = '';
 
-        data.forEach(element => {
-            cards += `
-                <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px" id="${element.id}">
-                    <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;">
-                    <div class="card-body">
-                        <h5 class="card-title">${element.name}</h5>
-                        <p class="card-text">Cijena: ${element.price} KM</p>
-                        <button href="" class="btn content__food__cards__root-buttons" style="background-color: #0AA1DD; margin: 1% 0; display: none;" onclick="deleteFood(this)"><span class="text-light">Uredi</span></button>
-                        <button href="" class="btn content__food__cards__root-buttons" style="background-color: #F32424; margin: 1% 0; display: none;"><span class="text-light">Izbriši</span></button>
-                        <button href="" class="btn" style="background-color: #F66B0E; margin: 1% 0; width: 100%;" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
-                    </div>
-                </div>                    
-            `
-        })
-
-        cardList.innerHTML = cards; 
+    data.forEach(element => {
+        cards += `
+            <div class="card" style="width: 18rem; height: 23rem; margin: 0 20px; margin-top: 20px;" id="${element.id}">
+                <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;">
+                <div class="card-body">
+                    <h5 class="card-title text-dark">${element.name}</h5>
+                    <p class="card-text text-dark">Cijena: ${element.price} KM</p>
+                    <button href="" class="btn content__food__cards__root-buttons" style="background-color: #0AA1DD; margin: 1% 0; display: none;" onclick="deleteFood(this)"><span class="text-light">Uredi</span></button>
+                    <button href="" class="btn content__food__cards__root-buttons" style="background-color: #F32424; margin: 1% 0; display: none;"><span class="text-light">Izbriši</span></button>
+                    <button href="" class="btn btn-primary" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
+                </div>
+            </div>                    
+        `
     })
+
+    cardList.innerHTML = cards; 
+})
 
 const login = () => {
     let temp = document.querySelector('#login');
@@ -55,16 +54,16 @@ const login = () => {
     temp.innerHTML = `
         <form id="login__form">
             <div class="mb-3">
-                <label class="form-label">Username</label>
+                <label class="form-label text-light">Username</label>
                 <input type="text" class="form-control" id="login__form__username" placeholder="Enter your username">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <label for="exampleInputPassword1" class="form-label text-light">Password</label>
                 <input type="password" class="form-control" id="login__form__password" placeholder="Enter your password">
             </div>
             <p id="login__form__error-message" class="text-danger"></p>
             <div>
-                <input type="button" class="btn" style="background-color: #F66B0E; color: white;" onclick="loginForm()" value="Submit">
+                <input type="button" class="btn" style="background-color: #38d9a9; color: white;" onclick="loginForm()" value="Submit">
             </div>
         </form>
     `;
@@ -82,25 +81,30 @@ const login = () => {
     });
 }
 
-const loginForm = () => {
-    let loginUsername = document.querySelector('#login__form__username').value;
-    let loginPassword = document.querySelector('#login__form__password').value;
+const loginCheck = () => {
+    let loginUsername = document.querySelector('#username').value;
+    let loginPassword = document.querySelector('#password').value;
 
     if (loginUsername === 'root') {
         if (loginPassword === 'root') {
-            let temp = document.querySelector('#login');
-            temp.style.display = 'none';
-            temp = document.querySelector('#content');
-            temp.style.filter = 'blur(0px)';
-            root = true;
-            popup();
+            document.querySelector('.btn-close').click();
             rootControls();
+            popup(true);
         } else {
-            document.querySelector('#login__form__error-message').innerText = 'Nepravilna lozinka.';
+            let warningMessage = document.querySelector('#warning-message');
+            warningMessage.style.display = 'block';
+            warningMessage.innerText = 'Nepravilna lozinka.';
         }
     } else {
-        document.querySelector('#login__form__error-message').innerText = 'Nepravilan username.';
+        let warningMessage = document.querySelector('#warning-message');
+        warningMessage.style.display = 'block';
+        warningMessage.innerText = 'Nepravilan username';
     }
+}
+
+const hideWarningMessage = () => {
+    let warningMessage = document.querySelector('#warning-message');
+    warningMessage.style.display = 'none';
 }
 
 const rootControls = () => {
@@ -127,23 +131,18 @@ const logout = () => {
 
     loginButton.style.display = 'inline-block';
     logoutButton.style.display = 'none';
-    root = false;
-    popup();
+    popup(false);
 }
 
-const popup = () => {
+const popup = (root) => {
     let popup = document.querySelector('#pop-up');
-    popup.style.display = 'flex';
 
     if (root) popup.innerText = 'Uspješno ste prijavljeni.';
-    else popup.innerText = 'Uspješno ste odjavljeni.'
+    else popup.innerText = 'Uspješno ste odjavljeni.';
 
-    let temp = document.querySelector('#content');
-    temp = document.querySelector('#content');
-    temp.style.filter = 'blur(5px)';
+    popup.style.display = 'block';
 
     setTimeout(() => {
         popup.style.display = 'none';
-        temp.style.filter = 'blur(0px)';
     }, 2000);
 }
