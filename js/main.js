@@ -38,7 +38,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                     <div class="card-body">
                         <h5 class="card-title">${element.name}</h5>
                         <p class="card-text">Cijena: ${element.price} KM</p>
-                        <button href="" class="btn content__food__cards__root-buttons" style="background-color: #0AA1DD; margin: 1% 0; display: none;"><span class="text-light">Uredi</span></button>
+                        <button href="" class="btn content__food__cards__root-buttons" style="background-color: #0AA1DD; margin: 1% 0; display: none;" onclick="deleteFood(this)"><span class="text-light">Uredi</span></button>
                         <button href="" class="btn content__food__cards__root-buttons" style="background-color: #F32424; margin: 1% 0; display: none;"><span class="text-light">Izbriši</span></button>
                         <button href="" class="btn" style="background-color: #F66B0E; margin: 1% 0; width: 100%;" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
                     </div>
