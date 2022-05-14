@@ -29,7 +29,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="col-form-label">Šifra:</label>
-                            <input type="text" class="form-control" id="password" placeholder="Unesite vašu šifru...">
+                            <input type="password" class="form-control" id="password" placeholder="Unesite vašu šifru...">
                         </div>
                     </form>
                     <p style="display: none;" id="warning-message" class="text-warning"></p>
@@ -44,9 +44,9 @@
     <div id="content">
         <div id="content__header" class="text-light">
             <div id="content__header__news-feed">
-                <span>🔥🔥🔥<span id="content__header__news-feed__message">Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.</span></span>
+                <span id="content__header__news-feed__message"></span>
             </div>
-            <button href="" onclick="deleteNewsMessage()" class="content__header__news-feed__button text-light">x</button>
+            <a href="" onclick="deleteNewsMessage()" class="content__header__news-feed__button">x</a>
         </div>
 
         <div id="content__welcome-section">
@@ -83,13 +83,31 @@
         </nav>
 
         <div id="content__food">
-            <h1 id="content__food__heading" class="text-dark">Hrana</h1>
+            <h1 id="content__food__heading" class="text-dark h3">Hrana</h1>
             <div id="content__food__cards"></div>
             <br><a href="#" class="btn content__food__root-buttons" style="background-color: #38d9a9; display: none;"><span class="text-light">Dodaj hranu</span></a>
         </div>
 
+        <div id="content__footer">
+            <p class="content__footer__container__heading h2"><span style="color: #38d9a9">M</span><span class="text-light">inty</span></p>
+            <p class="content__footer__container__text text-light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis voluptatibus illum temporibus sint aut, dicta, cum dolore incidunt illo sapiente quam nam delectus ad labore accusantium quibusdam aspernatur amet saepe.</p>
+            <div class="content__footer__container__social-links">
+                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-skype"></i></a>
+            </div>
+            <div id="content__footer__container__copyright-credits" class="text-light">
+                &copy; Copyright <strong><span style="color: #38d9a9">M</span><span class="text-light">inty</span></strong>. All Rights Reserved<br>
+                Designed by Zijad Doglod
+            </div>
+        </div>
+
     </div>
+
     <script src="./js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/ed23f4033a.js" crossorigin="anonymous"></script>
 </body>
 </html>

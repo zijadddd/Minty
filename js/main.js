@@ -1,5 +1,9 @@
 let counterForNewsMessage = 0;
 
+document.querySelector('#content__header__news-feed__message').innerHTML = 
+    `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> 
+    Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.`;
+
 setInterval(() => {
     let message = document.querySelector('#content__header__news-feed__message');
 
@@ -11,7 +15,8 @@ setInterval(() => {
         'Želite vidjeti source kod naše stranice ? Nema problema, pritisnite <a href="https://github.com/zijadddd/Minty" class="links">ovdje</a> !'
     ];
 
-    message.innerHTML = messages[(counterForNewsMessage = (counterForNewsMessage+1) % messages.length)];
+    message.innerHTML = `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> `
+                        + messages[(counterForNewsMessage = (counterForNewsMessage+1) % messages.length)];
 }, 5000);
 
 const deleteNewsMessage = () => {
@@ -32,13 +37,13 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 
     data.forEach(element => {
         cards += `
-            <div class="card" style="width: 18rem; height: 23rem; margin: 0 20px; margin-top: 20px;" id="${element.id}">
+            <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${element.id}">
                 <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;">
                 <div class="card-body">
                     <h5 class="card-title text-dark">${element.name}</h5>
                     <p class="card-text text-dark">Cijena: ${element.price} KM</p>
-                    <button href="" class="btn content__food__cards__root-buttons" style="background-color: #0AA1DD; margin: 1% 0; display: none;" onclick="deleteFood(this)"><span class="text-light">Uredi</span></button>
-                    <button href="" class="btn content__food__cards__root-buttons" style="background-color: #F32424; margin: 1% 0; display: none;"><span class="text-light">Izbriši</span></button>
+                    <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-edit"><span class="text-light">Uredi</span></button>
+                    <button href="" class="btn content__food__cards__root-buttons" id="content__food__cards__root-buttons-delete"> <span class="text-light">Izbriši</span></button>
                     <button href="" class="btn btn-primary" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
                 </div>
             </div>                    
