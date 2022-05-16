@@ -1,11 +1,12 @@
 @media only screen and (max-width: 960px) {
-    #pop-up {
+    .pop-up {
         width: 90%;
         left: 5%;
     }
 
     .carousel-card {
         flex-direction: column;
+        width: 100%;
     }
 
     .carousel-card__photo-container__photo {
@@ -15,22 +16,19 @@
 
     .carousel-card__text-container {
         text-align: center;
+        width: 100%;
     }
 }
 
 @media only screen and (min-width: 961px) {
-    #pop-up {
+    .pop-up {
         width: 50%;
         left: 25%;
     }
 
     .carousel-card__photo-container__photo {
         border-radius: 60px;
-        height: 60%;
-    }
-
-    .carousel-card__photo-container__photo {
-        height: 100%;
+        width: 60%;
     }
 }
 
@@ -157,7 +155,7 @@
     display: none;
 }
 
-#pop-up {
+.pop-up {
     margin: auto;
     position: fixed;
     top: 5%;
@@ -267,7 +265,7 @@
 
 .carousel-card {
     padding-top: 1%;
-    width: 50%;
+    width: 55%;
     height: 60vh;
     margin: auto;
     display: flex;

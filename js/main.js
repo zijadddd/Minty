@@ -42,8 +42,8 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                 <div class="card-body">
                     <h5 class="card-title text-dark">${element.name}</h5>
                     <p class="card-text text-dark">Cijena: ${element.price} KM</p>
-                    <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-edit"><span class="text-light">Uredi</span></button>
-                    <button href="" class="btn content__food__cards__root-buttons" id="content__food__cards__root-buttons-delete"> <span class="text-light">Izbriši</span></button>
+                    <button href="" class="btn content__food__cards__root-buttons" onclick="editFood(this)" id="content__food__cards__root-buttons-edit"><span class="text-light">Uredi</span></button>
+                    <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light">Izbriši</span></button>
                     <button href="" class="btn btn-primary" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
                 </div>
             </div>                    
@@ -94,7 +94,7 @@ const loginCheck = () => {
         if (loginPassword === 'root') {
             document.querySelector('.btn-close').click();
             rootControls();
-            popup(true);
+            popup('Uspješno ste prijavljeni !');
         } else {
             let warningMessage = document.querySelector('#warning-message');
             warningMessage.style.display = 'block';
@@ -136,18 +136,35 @@ const logout = () => {
 
     loginButton.style.display = 'inline-block';
     logoutButton.style.display = 'none';
-    popup(false);
+    popup('Uspješno ste odjavljeni !');
 }
 
-const popup = (root) => {
-    let popup = document.querySelector('#pop-up');
+const popup = (message) => {
+    let popup = document.querySelector('#info-pop-up');
 
-    if (root) popup.innerText = 'Uspješno ste prijavljeni.';
-    else popup.innerText = 'Uspješno ste odjavljeni.';
-
+    popup.innerText = message;
     popup.style.display = 'block';
 
     setTimeout(() => {
         popup.style.display = 'none';
     }, 2000);
+}
+
+const deleteFood = (food) => {
+    let foodId = food.parentElement.parentElement.id;
+    
+    fetch(`https://ptf-web-dizajn-2022.azurewebsites.net/api/Food/${foodId}`, {
+        method: 'DELETE'
+    })
+    .then(res => {
+        if (res.ok) {
+            let foodCard = document.getElementById(foodId);
+            foodCard.remove();
+            popup(`Hrana sa ID-em ${foodId} je uspješno obrisana !`);
+        } else {
+            let popup = document.querySelector('#error-pop-up');
+            popup.innerText = `Nije moguce obrisati hranu sa ID-em ${foodId}`;
+            popup.style.display = 'block';
+        }
+    })
 }
