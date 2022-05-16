@@ -1,11 +1,11 @@
 let counterForNewsMessage = 0;
 
-document.querySelector('#content__header__news-feed__message').innerHTML = 
+document.querySelector('#content__header__news-feed').innerHTML = 
     `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> 
     Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.`;
 
 setInterval(() => {
-    let message = document.querySelector('#content__header__news-feed__message');
+    let message = document.querySelector('#content__header__news-feed');
 
     const messages = [
         'Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.',
@@ -18,11 +18,6 @@ setInterval(() => {
     message.innerHTML = `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> `
                         + messages[(counterForNewsMessage = (counterForNewsMessage+1) % messages.length)];
 }, 5000);
-
-const deleteNewsMessage = () => {
-    let div = document.querySelector("#content__header");
-    div.style.display = "none";
-}
 
 fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 .then(res => {
