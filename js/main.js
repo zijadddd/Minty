@@ -229,3 +229,15 @@ const addFood = () => {
         }
     })
 }
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiemlqYWRkZGQiLCJhIjoiY2wzYWFiM2RpMDNyZjNrbWZ2ZXZjcWx3byJ9.66IR2a-mujJ6ntz0fGO7cw';
+const map = new mapboxgl.Map({
+        container: 'map', 
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [17.90197998685676, 44.19967714142325], 
+        zoom: 16 
+    });
+     
+    map.on('mousemove', (e) => {
+        document.getElementById('info').innerHTML = `${JSON.stringify(e.point)} <br> ${JSON.stringify(e.lngLat.wrap())}`;
+});
