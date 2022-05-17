@@ -15,7 +15,7 @@
     <div class="alert alert-primary pop-up" role="alert" id="info-pop-up"></div>
     <div class="alert alert-danger pop-up" role="alert" id="error-pop-up"></div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="login-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -37,6 +37,68 @@
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-primary" onclick="loginCheck()" id="loginButton">Prijavi se</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit-food-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit food</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="food-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="food-edit-name" placeholder="Unesite novo ime..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="food-price" class="col-form-label">Price:</label>
+                            <input type="text" class="form-control" id="food-edit-price" placeholder="Unesite novu cijenu..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="food-imageUrl" class="col-form-label">Image url:</label>
+                            <input type="text" class="form-control" id="food-edit-imageUrl" placeholder="Unesite link od nove slike..." required>
+                        </div>
+                    </form>
+                    <p style="display: none;" id="warning-message" class="text-warning"></p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary" onclick="editFood()">Uredi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="add-food-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add food</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="food-name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite novo ime..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="food-price" class="col-form-label">Price:</label>
+                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite novu cijenu..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="food-imageUrl" class="col-form-label">Image url:</label>
+                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite link od nove slike..." required>
+                        </div>
+                    </form>
+                    <p style="display: none;" id="warning-message" class="text-warning"></p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary" onclick="addFood()">Add</a>
                 </div>
             </div>
         </div>
@@ -73,7 +135,7 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" id="content__navbar__navbar-collapse__login-button">Prijava</a>
+                        <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-form" data-bs-whatever="@getbootstrap" id="content__navbar__navbar-collapse__login-button">Prijava</a>
                         <a href="#" class="btn" style="background-color: #38d9a9; display: none;" onclick="logout()" id="content__navbar__navbar-collapse__logout-button"><span class="text-light">Odjava</span></a>
                     </form>
                 </div>
@@ -81,12 +143,13 @@
         </nav>
 
         <div id="content__food">
-            <h1 id="content__food__heading" class="text-dark h3">Hrana</h1>
+            <h1 id="content__food__heading" class="text-dark h3">Hrana</h1><br>
             <div id="content__food__cards"></div>
-            <br><a href="#" class="btn content__food__root-buttons" style="background-color: #38d9a9; display: none;"><span class="text-light">Dodaj hranu</span></a>
+            <br>
+            <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-food-form" data-bs-whatever="@getbootstrap" id="content__food__root-button">Add food</a>
         </div>
 
-        <p class="h3 text-center text-dark ms-4">Šta drugi misle o nama ?</p>
+        <p class="h3 text-center text-dark">Šta drugi misle o nama ?</p><br>
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">

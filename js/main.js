@@ -2,17 +2,17 @@ let counterForNewsMessage = 0;
 
 document.querySelector('#content__header__news-feed').innerHTML = 
     `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> 
-    Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.`;
+    &nbspPomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.`;
 
 setInterval(() => {
     let message = document.querySelector('#content__header__news-feed');
 
     const messages = [
-        'Pomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.',
-        'Porcija u svakoj ruci.',
-        'Budi inspiriran da napraviš razliku komad po komad pizze.',
-        'Naša misija je stvoriti zdravije društvo povezujući ljude s pravom hranom.',
-        'Želite vidjeti source kod naše stranice ? Nema problema, pritisnite <a href="https://github.com/zijadddd/Minty" class="links">ovdje</a> !'
+        '&nbspPomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.',
+        '&nbspPorcija u svakoj ruci.',
+        '&nbspBudi inspiriran da napraviš razliku komad po komad pizze.',
+        '&nbspNaša misija je stvoriti zdravije društvo povezujući ljude s pravom hranom.',
+        '&nbspŽelite vidjeti source kod naše stranice ? Nema problema, pritisnite&nbsp<a href="https://github.com/zijadddd/Minty" class="links">ovdje</a> !'
     ];
 
     message.innerHTML = `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> `
@@ -33,11 +33,11 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
     data.forEach(element => {
         cards += `
             <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${element.id}">
-                <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;">
+                <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;" id="card__image">
                 <div class="card-body">
-                    <h5 class="card-title text-dark">${element.name}</h5>
-                    <p class="card-text text-dark">Cijena: ${element.price} KM</p>
-                    <button href="" class="btn content__food__cards__root-buttons" onclick="editFood(this)" id="content__food__cards__root-buttons-edit"><span class="text-light">Uredi</span></button>
+                    <h5 class="card-title text-dark" id="card-body__name">${element.name}</h5>
+                    <p class="card-text text-dark" id="card-body__price">Cijena: ${element.price} KM</p>
+                    <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${element.id}" id="content__food__cards__root-buttons-edit">Uredi</a>
                     <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light">Izbriši</span></button>
                     <button href="" class="btn btn-primary" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
                 </div>
@@ -47,39 +47,6 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 
     cardList.innerHTML = cards; 
 })
-
-const login = () => {
-    let temp = document.querySelector('#login');
-    temp.style.display = 'block';
-    temp.innerHTML = `
-        <form id="login__form">
-            <div class="mb-3">
-                <label class="form-label text-light">Username</label>
-                <input type="text" class="form-control" id="login__form__username" placeholder="Enter your username">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label text-light">Password</label>
-                <input type="password" class="form-control" id="login__form__password" placeholder="Enter your password">
-            </div>
-            <p id="login__form__error-message" class="text-danger"></p>
-            <div>
-                <input type="button" class="btn" style="background-color: #38d9a9; color: white;" onclick="loginForm()" value="Submit">
-            </div>
-        </form>
-    `;
-
-    temp = document.querySelector('#content');
-    temp.style.filter = 'blur(5px)';
-
-    document.addEventListener('mouseup', (e) => {
-        temp = document.querySelector('#login');
-        if (!temp.contains(e.target)) {
-            temp.style.display = 'none';
-            temp = document.querySelector('#content');
-            temp.style.filter = 'blur(0px)';
-        }
-    });
-}
 
 const loginCheck = () => {
     let loginUsername = document.querySelector('#username').value;
@@ -109,8 +76,11 @@ const hideWarningMessage = () => {
 
 const rootControls = () => {
     let cards = document.querySelectorAll('.content__food__cards__root-buttons');
+    let addFoodButton = document.querySelector('#content__food__root-button');
     let loginButton = document.querySelector('#content__navbar__navbar-collapse__login-button');
     let logoutButton = document.querySelector('#content__navbar__navbar-collapse__logout-button'); 
+
+    addFoodButton.style.display = 'block';
 
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'inline-block';
@@ -160,6 +130,92 @@ const deleteFood = (food) => {
             let popup = document.querySelector('#error-pop-up');
             popup.innerText = `Nije moguce obrisati hranu sa ID-em ${foodId}`;
             popup.style.display = 'block';
+        }
+    })
+}
+
+let editFoodForm = document.querySelector('#edit-food-form');
+let foodId = 0;
+editFoodForm.addEventListener('show.bs.modal', (event) => {
+    let editRootButton = event.relatedTarget;
+    foodId = editRootButton.getAttribute('data-bs-whatever');
+});
+
+const editFood = () => {
+    let foodName = document.querySelector('#food-edit-name').value;
+    let foodPrice = document.querySelector('#food-edit-price').value;
+    let foodImageUrl = document.querySelector('#food-edit-imageUrl').value;
+
+    fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food', {
+        method: 'PUT', 
+        headers: new Headers({'content-type': 'application/json'}),
+        body: JSON.stringify({
+            id: foodId,
+            name: foodName,
+            price: foodPrice,
+            imageUrl: foodImageUrl
+        })
+    })
+    .then(res => {
+        if (res.ok) {
+            let foodCard = document.getElementById(foodId);
+            foodCard.children[1].firstElementChild.innerText = foodName;
+            foodCard.children[1].children[1].innerText = `Price: ${foodPrice} KM`;
+            foodCard.children[0].src = foodImageUrl;
+
+            popup(`Hrana sa ID-em ${foodId} je uspješno uređena !`);
+        } else {
+            let popup = document.querySelector('#error-pop-up');
+            popup.innerText = `Nije moguce urediti hranu sa ID-em ${foodId}`;
+            popup.style.display = 'block';
+        }
+    })
+}
+
+const addFood = () => {
+    let foodAddedName = document.querySelector('#food-add-name').value;
+    let foodAddedPrice = document.querySelector('#food-add-price').value;
+    let foodAddedImageUrl = document.querySelector('#food-add-imageUrl').value;
+    let lastFoodId = document.querySelector('#content__food__cards').lastElementChild.id;
+
+    fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food', {
+        method: 'POST',
+        headers: new Headers({'content-type': 'application/json'}),
+        body: JSON.stringify({
+            id: lastFoodId + 1,
+            name: foodAddedName,
+            price: foodAddedPrice,
+            imageUrl: foodAddedImageUrl
+        })
+    })
+    .then(res => {
+        if (res.ok) {
+            let foodCards = document.querySelector('#content__food__cards');
+            let card = `
+                <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${res.id}">
+                    <img src="${foodAddedImageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;" id="card__image">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>
+                        <p class="card-text text-dark" id="card-body__price">Cijena: ${foodAddedPrice} KM</p>
+                        <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${lastFoodId}" id="content__food__cards__root-buttons-edit">Uredi</a>
+                        <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light">Izbriši</span></button>
+                        <button href="" class="btn btn-primary" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
+                    </div>
+                </div>                    
+            `;
+
+            foodCards.innerHTML += card;
+
+            let cards = document.querySelectorAll('.content__food__cards__root-buttons');
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].style.display = 'inline-block';
+            }
+
+            popup(`Hrana sa ID-em ${lastFoodId + 1} je uspješno uređena !`);
+        } else {
+            let popup = document.querySelector('#error-pop-up');
+            popup.innerText = 'Nije moguce dodati hranu';
+            popup.style.display = 'block';            
         }
     })
 }
