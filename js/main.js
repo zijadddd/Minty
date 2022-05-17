@@ -54,7 +54,8 @@ const loginCheck = () => {
 
     if (loginUsername === 'root') {
         if (loginPassword === 'root') {
-            document.querySelector('.btn-close').click();
+            let closeButton = document.querySelector('.btn-close');
+            closeButton.click();
             rootControls();
             popup('Uspješno ste prijavljeni !');
         } else {
@@ -92,8 +93,11 @@ const rootControls = () => {
 
 const logout = () => {
     let cards = document.querySelectorAll('.content__food__cards__root-buttons');
+    let addFoodButton = document.querySelector('#content__food__root-button');
     let loginButton = document.querySelector('#content__navbar__navbar-collapse__login-button');
     let logoutButton = document.querySelector('#content__navbar__navbar-collapse__logout-button'); 
+
+    addFoodButton.style.display = 'none';
 
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'none';
@@ -146,6 +150,9 @@ const editFood = () => {
     let foodPrice = document.querySelector('#food-edit-price').value;
     let foodImageUrl = document.querySelector('#food-edit-imageUrl').value;
 
+    let closeButton = document.querySelector('.btn-close');
+    closeButton.click();
+
     fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food', {
         method: 'PUT', 
         headers: new Headers({'content-type': 'application/json'}),
@@ -177,12 +184,15 @@ const addFood = () => {
     let foodAddedPrice = document.querySelector('#food-add-price').value;
     let foodAddedImageUrl = document.querySelector('#food-add-imageUrl').value;
     let lastFoodId = document.querySelector('#content__food__cards').lastElementChild.id;
+    lastFoodId++;
+    let closeButton = document.querySelector('.btn-close');
+    closeButton.click();
 
     fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food', {
         method: 'POST',
         headers: new Headers({'content-type': 'application/json'}),
         body: JSON.stringify({
-            id: lastFoodId + 1,
+            id: lastFoodId,
             name: foodAddedName,
             price: foodAddedPrice,
             imageUrl: foodAddedImageUrl
@@ -192,7 +202,7 @@ const addFood = () => {
         if (res.ok) {
             let foodCards = document.querySelector('#content__food__cards');
             let card = `
-                <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${res.id}">
+                <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${lastFoodId}">
                     <img src="${foodAddedImageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;" id="card__image">
                     <div class="card-body">
                         <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>

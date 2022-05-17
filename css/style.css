@@ -102,10 +102,6 @@
     border-radius: 15px;
 }
 
-#content__welcome-section__logo {
-    font-size: 80px;
-}
-
 #content__navbar {
     background-color: #212529;
     width: 100%;
@@ -148,7 +144,7 @@
     margin: auto;
     position: fixed;
     top: 5%;
-    z-index: 100;
+    z-index: 101;
     display: none;
     animation: fadeIn linear 0.5s;
 }
