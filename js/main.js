@@ -127,6 +127,8 @@ const deleteFood = (food) => {
     })
     .then(res => {
         if (res.ok) {
+            console.log(`Status code: ${res.status}`);
+            
             let foodCard = document.getElementById(foodId);
             foodCard.remove();
             popup(`Hrana sa ID-em ${foodId} je uspješno obrisana !`);
@@ -165,6 +167,8 @@ const editFood = () => {
     })
     .then(res => {
         if (res.ok) {
+            console.log(`Status code: ${res.status}`);
+
             let foodCard = document.getElementById(foodId);
             foodCard.children[1].firstElementChild.innerText = foodName;
             foodCard.children[1].children[1].innerText = `Price: ${foodPrice} KM`;
@@ -180,11 +184,19 @@ const editFood = () => {
 }
 
 const addFood = () => {
+    let foodCards = document.querySelector('#content__food__cards');
+    let lastFoodId;
+
+    if (foodCards.hasChildNodes.length > 0) {
+        lastFoodId = document.querySelector('#content__food__cards').lastElementChild.id;
+        lastFoodId++;
+    } else {
+        lastFoodId = 0;
+    }
+
     let foodAddedName = document.querySelector('#food-add-name').value;
     let foodAddedPrice = document.querySelector('#food-add-price').value;
     let foodAddedImageUrl = document.querySelector('#food-add-imageUrl').value;
-    let lastFoodId = document.querySelector('#content__food__cards').lastElementChild.id;
-    lastFoodId++;
     let closeButton = document.querySelector('.btn-close');
     closeButton.click();
 
@@ -200,10 +212,11 @@ const addFood = () => {
     })
     .then(res => {
         if (res.ok) {
-            let foodCards = document.querySelector('#content__food__cards');
+            console.log(`Status code: ${res.status}`);
+
             let card = `
                 <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${lastFoodId}">
-                    <img src="${foodAddedImageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;" id="card__image">
+                    <img src="${foodAddedImageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 13rem;" id="card__image">
                     <div class="card-body">
                         <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>
                         <p class="card-text text-dark" id="card-body__price">Cijena: ${foodAddedPrice} KM</p>
