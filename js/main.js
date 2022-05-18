@@ -33,7 +33,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
     data.forEach(element => {
         cards += `
             <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${element.id}">
-                <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 60%;" id="card__image">
+                <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 13rem;" id="card__image">
                 <div class="card-body">
                     <h5 class="card-title text-dark" id="card-body__name">${element.name}</h5>
                     <p class="card-text text-dark" id="card-body__price">Cijena: ${element.price} KM</p>
@@ -229,15 +229,3 @@ const addFood = () => {
         }
     })
 }
-
-mapboxgl.accessToken = 'pk.eyJ1IjoiemlqYWRkZGQiLCJhIjoiY2wzYWFiM2RpMDNyZjNrbWZ2ZXZjcWx3byJ9.66IR2a-mujJ6ntz0fGO7cw';
-const map = new mapboxgl.Map({
-        container: 'map', 
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [17.90197998685676, 44.19967714142325], 
-        zoom: 16 
-    });
-     
-    map.on('mousemove', (e) => {
-        document.getElementById('info').innerHTML = `${JSON.stringify(e.point)} <br> ${JSON.stringify(e.lngLat.wrap())}`;
-});

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
 </head>
 <body>
 
@@ -136,7 +135,7 @@
                             <a class="nav-link text-light" href="#carouselExampleControls">People's opinions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#map">Location</a>
+                            <a class="nav-link text-light" href="#content__location">Location</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -154,7 +153,7 @@
             <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-food-form" data-bs-whatever="@getbootstrap" id="content__food__root-button">Add food</a>
         </div>
 
-        <p class="h3 text-center text-dark">What other thinks about us ?</p><br>
+        <p class="h3 text-center text-dark">What other thinks about us ?</p>
 
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -217,9 +216,11 @@
             </button>
         </div>        
 
-        <p class="h3 text-center"><span style="color: #38d9a9">M</span><span class="text-dark">inty's location</span></p><br><br>
+        <p class="h3 text-center"><span style="color: #38d9a9">M</span><span class="text-dark">inty's location</span></p>
 
-        <div id='map'></div>
+        <div id="content__location">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2860.387012741559!2d17.90177878739272!3d44.199094974586004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ee2423fa0fbaf%3A0xd5caf50678c02195!2sPolitehni%C4%8Dki%20fakultet%20Univerziteta%20u%20Zenici!5e0!3m2!1sen!2sba!4v1652832841690!5m2!1sen!2sba" width="60%" height="600" style="border-radius: 15px; margin: 2% 0 0 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
 
         <div id="content__footer">
             <p class="content__footer__container__heading h2"><span style="color: #38d9a9">M</span><span class="text-light">inty</span></p>

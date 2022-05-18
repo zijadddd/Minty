@@ -18,11 +18,6 @@
         text-align: center;
         width: 100%;
     }
-
-    #map {
-        width: 100%;
-        border-radius: 0px;
-    }
 }
 
 @media only screen and (min-width: 961px) {
@@ -34,11 +29,6 @@
     .carousel-card__photo-container__photo {
         border-radius: 40px;
         width: 60%;
-    }
-
-    #map {
-        width: 55%;
-        border-radius: 12px;
     }
 }
 
@@ -137,19 +127,6 @@
     justify-content: center;
 }
 
-#login {
-    background-color: #212529;
-    border-radius: 12px;
-    top: 25%;
-    left: 25%;
-    z-index: 100;
-    position: fixed;
-    width: 50%;
-    height: 15rem;
-    padding: 1%;
-    display: none;
-}
-
 .pop-up {
     margin: auto;
     position: fixed;
@@ -206,7 +183,6 @@
 }
 
 #content__footer {
-    margin-top: 10vh;
     background-color: #212529;
     padding: 2%;
 }
@@ -291,7 +267,8 @@
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%38d9a9' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
 }
 
-#map {
-    height: 60vh;
-    margin: auto;
+#content__location {
+    display: flex;
+    justify-content: center;
+    margin: 2% 0;
 }
