@@ -95,8 +95,9 @@
 .btn-primary {
     background-color: #38d9a9;
     border: 0;
-    margin: 1% 0;
+    margin: 1% auto;
     width: 100%;
+    height: auto;
 }
 
 .btn-primary:hover {
@@ -169,6 +170,9 @@
 }
 
 #content__food {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
     margin-top: 2vh;
     padding: 1vh;
@@ -313,4 +317,19 @@
     display: flex;
     justify-content: center;
     margin: 2% 0;
+}
+
+#modal-body__ordered-food-price {
+    display: inline-block;
+}
+
+#card-body__price {
+    display: inline;
+}
+
+#content__food__order-button {
+    width: 20%;
+    border-radius: 6px;
+    margin: 0 auto 3% auto;
+    padding: 1%;
 }

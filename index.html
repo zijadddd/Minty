@@ -16,15 +16,16 @@
     <div class="alert alert-primary pop-up" role="alert" id="info-pop-up"></div>
     <div class="alert alert-danger pop-up" role="alert" id="error-pop-up"></div>
 
+
     <div class="modal fade" id="login-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Prijava</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                    <button type="button" class="btn-close" id="login-form-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="modal-body__login-form">
                         <div class="mb-3">
                             <label for="username" class="col-form-label">Username:</label>
                             <input type="text" class="form-control" id="username" placeholder="Unesite vaš username...">
@@ -48,10 +49,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit food</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                    <button type="button" class="btn-close" id="edit-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="modal-body__edit-food-form">
                         <div class="mb-3">
                             <label for="food-name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="food-edit-name" placeholder="Unesite novo ime..." required>
@@ -79,10 +80,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add food</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                    <button type="button" class="btn-close" id="add-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="modal-body__add-food-form">
                         <div class="mb-3">
                             <label for="food-name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="food-add-name" placeholder="Unesite novo ime..." required>
@@ -105,7 +106,41 @@
         </div>
     </div>
 
+    <div class="modal fade" id="order-food-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Order food</h5>
+                    <button type="button" class="btn-close" id="order-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="modal-body__ordered-foods"></ul>
+                    Ukupna cijena: <p id="modal-body__ordered-food-price">0</p><br>
+                    <form id="modal-body__customer-form">
+                        <div class="mb-3">
+                            <label for="customer-name" class="col-form-label">Full name:</label>
+                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite novo ime..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customer-address" class="col-form-label">Address:</label>
+                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite novu cijenu..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customer-phone-number" class="col-form-label">Phone number:</label>
+                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite link od nove slike..." required>
+                        </div>
+                    </form>
+                    <p style="display: none;" id="warning-message" class="text-warning"></p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary" onclick="orderFood()">Add</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="content">
+
         <div id="content__header" class="text-light">
             <span id="content__header__news-feed"></span>
         </div>
@@ -150,7 +185,8 @@
             <h1 id="content__food__heading" class="text-dark h3">Hrana</h1><br>
             <div id="content__food__cards"></div>
             <br>
-            <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-food-form" data-bs-whatever="@getbootstrap" id="content__food__root-button">Add food</a>
+            <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-food-form" data-bs-whatever="@getbootstrap" id="content__food__root-button"><i class="fa-solid fa-plus"></i> Add food</a>
+            <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#order-food-form" data-bs-whatever="@getbootstrap" id="content__food__order-button"><i class="fa fa-cart-arrow-down"></i> Open cart</a>
         </div>
 
         <p class="h3 text-center text-dark">What other thinks about us ?</p>

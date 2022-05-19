@@ -36,10 +36,10 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                 <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 13rem;" id="card__image">
                 <div class="card-body">
                     <h5 class="card-title text-dark" id="card-body__name">${element.name}</h5>
-                    <p class="card-text text-dark" id="card-body__price">Cijena: ${element.price} KM</p>
-                    <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${element.id}" id="content__food__cards__root-buttons-edit">Uredi</a>
-                    <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light">Izbriši</span></button>
-                    <button href="" class="btn btn-primary" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
+                    <div>Price: <p class="card-text text-dark" id="card-body__price">${element.price}</p> $</div>
+                    <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${element.id}" id="content__food__cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                    <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
+                    <button href="" class="btn btn-primary card-body__add-to-cart" onclick="putFoodInOrder(this)"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                 </div>
             </div>                    
         `
@@ -51,11 +51,11 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 const loginCheck = () => {
     let loginUsername = document.querySelector('#username').value;
     let loginPassword = document.querySelector('#password').value;
+    document.querySelector('#modal-body__login-form').reset();
 
     if (loginUsername === 'root') {
         if (loginPassword === 'root') {
-            let closeButton = document.querySelector('.btn-close');
-            closeButton.click();
+            document.querySelector('#login-form-close-button').click();
             rootControls();
             popup('Uspješno ste prijavljeni !');
         } else {
@@ -152,8 +152,8 @@ const editFood = () => {
     let foodPrice = document.querySelector('#food-edit-price').value;
     let foodImageUrl = document.querySelector('#food-edit-imageUrl').value;
 
-    let closeButton = document.querySelector('.btn-close');
-    closeButton.click();
+    document.querySelector('#edit-food-close-button').click();
+    document.querySelector('#modal-body__add-food-form').reset();
 
     fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food', {
         method: 'PUT', 
@@ -197,8 +197,9 @@ const addFood = () => {
     let foodAddedName = document.querySelector('#food-add-name').value;
     let foodAddedPrice = document.querySelector('#food-add-price').value;
     let foodAddedImageUrl = document.querySelector('#food-add-imageUrl').value;
-    let closeButton = document.querySelector('.btn-close');
-    closeButton.click();
+
+    document.querySelector('#add-food-close-button').click();
+    document.querySelector('#modal-body__add-food-form').reset();
 
     fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food', {
         method: 'POST',
@@ -219,10 +220,10 @@ const addFood = () => {
                     <img src="${foodAddedImageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 13rem;" id="card__image">
                     <div class="card-body">
                         <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>
-                        <p class="card-text text-dark" id="card-body__price">Cijena: ${foodAddedPrice} KM</p>
-                        <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${lastFoodId}" id="content__food__cards__root-buttons-edit">Uredi</a>
-                        <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light">Izbriši</span></button>
-                        <button href="" class="btn btn-primary" onclick="dodajUKorpu(this)"><span class="text-light">Naruči</span></button>
+                        <div>Price: <p class="card-text text-dark" id="card-body__price">${foodAddedPrice}</p> KM</div>
+                        <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${lastFoodId}" id="content__food__cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                        <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
+                        <button href="" class="btn btn-primary" onclick="putFoodInOrder(this)" id="card-body__add-to-cart"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                     </div>
                 </div>                    
             `;
@@ -241,4 +242,35 @@ const addFood = () => {
             popup.style.display = 'block';            
         }
     })
+}
+
+const putFoodInOrder = (food) => {
+    let foodId = food.parentElement.parentElement.id;
+    let foodCard = document.getElementById(foodId);
+    let foodName = foodCard.children[1].firstElementChild.innerText;
+    let foodPrice = foodCard.children[1].children[1].children[0].innerText;
+
+    let foodOrder = document.querySelector('#modal-body__ordered-foods');
+    let priceContainer = document.querySelector('#modal-body__ordered-food-price');
+    let price = priceContainer.innerText;
+    price = parseFloat(price);
+
+    let order = `
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Name: ${foodName} ${foodPrice}
+        </li>        
+    `;
+
+    price += parseFloat(foodPrice);
+    priceContainer.innerText = price;
+    
+    foodOrder.innerHTML += order;
+}
+
+const orderFood = () => {
+    popup('Uspješno ste naručili hranu, biti će za par minuta kod VAS ! Ostanite uz Minty :)');
+    document.querySelector('#modal-body__ordered-foods').innerHTML = '';
+    document.querySelector('#modal-body__ordered-food-price').innerHTML = '0';
+    document.querySelector('#modal-body__customer-form').reset();
+    document.querySelector('#order-food-close-button').click();
 }
