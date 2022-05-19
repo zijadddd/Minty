@@ -92,16 +92,18 @@
     border: 3px solid #ffffff;
 }
 
-.btn-primary {
+.btn-main {
     background-color: #38d9a9;
+    color: white;
     border: 0;
     margin: 1% auto;
     width: 100%;
     height: auto;
 }
 
-.btn-primary:hover {
+.btn-main:hover {
     background-color: #20c997;
+    color: white;
 }
 
 .links {

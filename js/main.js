@@ -1,4 +1,5 @@
 let counterForNewsMessage = 0;
+let root = false;
 
 document.querySelector('#content__header__news-feed').innerHTML = 
     `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> 
@@ -39,7 +40,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                     <div>Price: <p class="card-text text-dark" id="card-body__price">${element.price}</p> $</div>
                     <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${element.id}" id="content__food__cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                     <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
-                    <button href="" class="btn btn-primary card-body__add-to-cart" onclick="putFoodInOrder(this)"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
+                    <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                 </div>
             </div>                    
         `
@@ -77,35 +78,41 @@ const hideWarningMessage = () => {
 
 const rootControls = () => {
     let cards = document.querySelectorAll('.content__food__cards__root-buttons');
-    let addFoodButton = document.querySelector('#content__food__root-button');
-    let loginButton = document.querySelector('#content__navbar__navbar-collapse__login-button');
-    let logoutButton = document.querySelector('#content__navbar__navbar-collapse__logout-button'); 
+    let orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
+    document.querySelector('#content__food__root-button').style.display = 'block';
+    document.querySelector('#content__navbar__navbar-collapse__login-button').style.display = 'none';
+    document.querySelector('#content__navbar__navbar-collapse__logout-button').style.display = 'inline-block';
+    document.querySelector('#content__food__order-button').style.display = 'none';
 
-    addFoodButton.style.display = 'block';
+    for (let i = 0; i < orderFoodButtons.length; i++) {
+        orderFoodButtons[i].style.display = 'none';
+    }
 
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'inline-block';
     }
 
-    loginButton.style.display = 'none';
-    logoutButton.style.display = 'inline-block';
+    root = true;
 }
 
 const logout = () => {
     let cards = document.querySelectorAll('.content__food__cards__root-buttons');
-    let addFoodButton = document.querySelector('#content__food__root-button');
-    let loginButton = document.querySelector('#content__navbar__navbar-collapse__login-button');
-    let logoutButton = document.querySelector('#content__navbar__navbar-collapse__logout-button'); 
+    let orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
+    document.querySelector('#content__food__root-button').style.display = 'none';;
+    document.querySelector('#content__navbar__navbar-collapse__login-button').style.display = 'inline-block';
+    document.querySelector('#content__navbar__navbar-collapse__logout-button').style.display = 'none';
+    document.querySelector('#content__food__order-button').style.display = 'block';
 
-    addFoodButton.style.display = 'none';
+    for (let i = 0; i < orderFoodButtons.length; i++) {
+        orderFoodButtons[i].style.display = 'block';
+    }
 
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'none';
     }
 
-    loginButton.style.display = 'inline-block';
-    logoutButton.style.display = 'none';
     popup('Uspješno ste odjavljeni !');
+    root = false;
 }
 
 const popup = (message) => {
@@ -153,7 +160,7 @@ const editFood = () => {
     let foodImageUrl = document.querySelector('#food-edit-imageUrl').value;
 
     document.querySelector('#edit-food-close-button').click();
-    document.querySelector('#modal-body__add-food-form').reset();
+    document.querySelector('#modal-body__edit-food-form').reset();
 
     fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food', {
         method: 'PUT', 
@@ -188,8 +195,13 @@ const addFood = () => {
     let lastFoodId;
 
     if (foodCards.hasChildNodes.length > 0) {
-        lastFoodId = document.querySelector('#content__food__cards').lastElementChild.id;
-        lastFoodId++;
+        for (let i = 0; i < foodCards.length; i++) {
+            if(typeof(element) == 'undefined' && element == null){
+                lastFoodId = i;
+            } else {
+                lastFoodId = foodCards.length;
+            }           
+        }
     } else {
         lastFoodId = 0;
     }
@@ -223,7 +235,7 @@ const addFood = () => {
                         <div>Price: <p class="card-text text-dark" id="card-body__price">${foodAddedPrice}</p> KM</div>
                         <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${lastFoodId}" id="content__food__cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                         <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
-                        <button href="" class="btn btn-primary" onclick="putFoodInOrder(this)" id="card-body__add-to-cart"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
+                        <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)" style="display: none;"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                     </div>
                 </div>                    
             `;
@@ -249,10 +261,10 @@ const putFoodInOrder = (food) => {
     let foodCard = document.getElementById(foodId);
     let foodName = foodCard.children[1].firstElementChild.innerText;
     let foodPrice = foodCard.children[1].children[1].children[0].innerText;
-
     let foodOrder = document.querySelector('#modal-body__ordered-foods');
     let priceContainer = document.querySelector('#modal-body__ordered-food-price');
     let price = priceContainer.innerText;
+
     price = parseFloat(price);
 
     let order = `
