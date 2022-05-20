@@ -52,13 +52,13 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 const loginCheck = () => {
     let loginUsername = document.querySelector('#username').value;
     let loginPassword = document.querySelector('#password').value;
-    document.querySelector('#modal-body__login-form').reset();
 
     if (loginUsername === 'root') {
         if (loginPassword === 'root') {
             document.querySelector('#login-form-close-button').click();
             rootControls();
             popup('Uspješno ste prijavljeni !');
+            document.querySelector('#modal-body__login-form').reset();
         } else {
             let warningMessage = document.querySelector('#warning-message');
             warningMessage.style.display = 'block';
@@ -126,6 +126,17 @@ const popup = (message) => {
     }, 2000);
 }
 
+const errorPopup = (message) => {
+    let popup = document.querySelector('#error-pop-up');
+
+    popup.innerText = message;
+    popup.style.display = 'block';
+
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 2000);
+}
+
 const deleteFood = (food) => {
     let foodId = food.parentElement.parentElement.id;
     
@@ -140,9 +151,7 @@ const deleteFood = (food) => {
             foodCard.remove();
             popup(`Hrana sa ID-em ${foodId} je uspješno obrisana !`);
         } else {
-            let popup = document.querySelector('#error-pop-up');
-            popup.innerText = `Nije moguce obrisati hranu sa ID-em ${foodId}`;
-            popup.style.display = 'block';
+            errorPopup(`Nije moguce obrisati hranu sa ID-em ${foodId}`);
         }
     })
 }
@@ -183,27 +192,22 @@ const editFood = () => {
 
             popup(`Hrana sa ID-em ${foodId} je uspješno uređena !`);
         } else {
-            let popup = document.querySelector('#error-pop-up');
-            popup.innerText = `Nije moguce urediti hranu sa ID-em ${foodId}`;
-            popup.style.display = 'block';
+            errorPopup('Nije moguće urediti hranu !');
         }
     })
 }
 
 const addFood = () => {
     let foodCards = document.querySelector('#content__food__cards');
-    let lastFoodId;
+    let lastFoodId = 0;
 
-    if (foodCards.hasChildNodes.length > 0) {
-        for (let i = 0; i < foodCards.length; i++) {
-            if(typeof(element) == 'undefined' && element == null){
-                lastFoodId = i;
-            } else {
-                lastFoodId = foodCards.length;
-            }           
-        }
-    } else {
-        lastFoodId = 0;
+    for (let i = 0; i < foodCards.children.length; i++) {
+        if (!document.getElementById(i)) {
+            lastFoodId = i;
+            break;
+        } else {
+            lastFoodId = foodCards.children.length;
+        }           
     }
 
     let foodAddedName = document.querySelector('#food-add-name').value;
@@ -247,11 +251,9 @@ const addFood = () => {
                 cards[i].style.display = 'inline-block';
             }
 
-            popup(`Hrana sa ID-em ${lastFoodId + 1} je uspješno uređena !`);
+            popup(`Hrana sa ID-em ${lastFoodId + 1} je uspješno dodana !`);
         } else {
-            let popup = document.querySelector('#error-pop-up');
-            popup.innerText = 'Nije moguce dodati hranu';
-            popup.style.display = 'block';            
+            errorPopup('Nije moguće dodati hranu !');
         }
     })
 }
@@ -280,9 +282,15 @@ const putFoodInOrder = (food) => {
 }
 
 const orderFood = () => {
-    popup('Uspješno ste naručili hranu, biti će za par minuta kod VAS ! Ostanite uz Minty :)');
-    document.querySelector('#modal-body__ordered-foods').innerHTML = '';
-    document.querySelector('#modal-body__ordered-food-price').innerHTML = '0';
-    document.querySelector('#modal-body__customer-form').reset();
-    document.querySelector('#order-food-close-button').click();
+    let priceContainer = document.querySelector('#modal-body__ordered-food-price').innerText;
+
+    if(priceContainer == 0) {
+        errorPopup('Ne možete naručiti jer niste ubacili ništa u korpu !');
+        document.querySelector('#modal-body__customer-form').reset();
+        document.querySelector('#order-food-close-button').click();
+    } else {
+        popup('Uspješno ste naručili hranu, biti će za par minuta kod VAS ! Ostanite uz Minty :)');
+        document.querySelector('#modal-body__ordered-foods').innerHTML = '';
+        document.querySelector('#modal-body__ordered-food-price').innerHTML = '0';
+    }
 }

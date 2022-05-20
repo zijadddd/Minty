@@ -25,20 +25,20 @@
                     <button type="button" class="btn-close" id="login-form-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-body__login-form">
+                    <form id="modal-body__login-form" onsubmit="loginCheck(this); return false;" class="w-100">
                         <div class="mb-3">
-                            <label for="username" class="col-form-label">Username:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Unesite vaš username...">
+                          <label for="username" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="username" placeholder="Enter your username..." required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="col-form-label">Šifra:</label>
-                            <input type="password" class="form-control" id="password" placeholder="Unesite vašu šifru...">
+                          <label for="password" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="password" placeholder="Enter your password..." required>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-main" type="submit">Submit</button>
                         </div>
                     </form>
-                    <p style="display: none;" id="warning-message" class="text-warning"></p>
-                </div>
-                <div class="modal-footer">
-                    <a type="button" class="btn btn-main" onclick="loginCheck()" id="loginButton">Prijavi se</a>
+                    <p style="display: none;" id="warning-message" class="text-danger"></p>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
                     <button type="button" class="btn-close" id="edit-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-body__edit-food-form">
+                    <form id="modal-body__edit-food-form" onsubmit="editFood(this); return false;">
                         <div class="mb-3">
                             <label for="food-name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="food-edit-name" placeholder="Unesite novo ime..." required>
@@ -65,11 +65,11 @@
                             <label for="food-imageUrl" class="col-form-label">Image url:</label>
                             <input type="text" class="form-control" id="food-edit-imageUrl" placeholder="Unesite link od nove slike..." required>
                         </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-main">Edit</button>
+                        </div>
                     </form>
-                    <p style="display: none;" id="warning-message" class="text-warning"></p>
-                </div>
-                <div class="modal-footer">
-                    <a type="button" class="btn btn-main" onclick="editFood()">Uredi</a>
+                    <p style="display: none;" id="warning-message" class="text-danger"></p>
                 </div>
             </div>
         </div>
@@ -83,24 +83,24 @@
                     <button type="button" class="btn-close" id="add-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-body__add-food-form">
+                    <form id="modal-body__add-food-form" onsubmit="addFood(this); return false;">
                         <div class="mb-3">
                             <label for="food-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite novo ime..." required>
+                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite ime..." required>
                         </div>
                         <div class="mb-3">
                             <label for="food-price" class="col-form-label">Price:</label>
-                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite novu cijenu..." required>
+                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite cijenu..." required>
                         </div>
                         <div class="mb-3">
                             <label for="food-imageUrl" class="col-form-label">Image url:</label>
-                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite link od nove slike..." required>
+                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite link od slike..." required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-main">Add</button>
                         </div>
                     </form>
-                    <p style="display: none;" id="warning-message" class="text-warning"></p>
-                </div>
-                <div class="modal-footer">
-                    <a type="button" class="btn btn-main" onclick="addFood()">Add</a>
+                    <p style="display: none;" id="warning-message" class="text-danger"></p>
                 </div>
             </div>
         </div>
@@ -115,25 +115,25 @@
                 </div>
                 <div class="modal-body">
                     <ul class="list-group" id="modal-body__ordered-foods"></ul>
-                    Ukupna cijena: <p id="modal-body__ordered-food-price">0</p><br>
-                    <form id="modal-body__customer-form">
+                    Ukupna cijena: <p id="modal-body__ordered-food-price"></p><br>
+                    <form id="modal-body__customer-form" onsubmit="orderFood(this); return false;">
                         <div class="mb-3">
                             <label for="customer-name" class="col-form-label">Full name:</label>
-                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite novo ime..." required>
+                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite ime i prezime..." required>
                         </div>
                         <div class="mb-3">
                             <label for="customer-address" class="col-form-label">Address:</label>
-                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite novu cijenu..." required>
+                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite adresu..." required>
                         </div>
                         <div class="mb-3">
                             <label for="customer-phone-number" class="col-form-label">Phone number:</label>
-                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite link od nove slike..." required>
+                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite broj telefona..." required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-main">Add</button>
                         </div>
                     </form>
-                    <p style="display: none;" id="warning-message" class="text-warning"></p>
-                </div>
-                <div class="modal-footer">
-                    <a type="button" class="btn btn-main" onclick="orderFood()">Add</a>
+                    <p style="display: none;" id="warning-message" class="text-danger"></p>
                 </div>
             </div>
         </div>
