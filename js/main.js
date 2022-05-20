@@ -1,12 +1,12 @@
 let counterForNewsMessage = 0;
 let root = false;
 
-document.querySelector('#content__header__news-feed').innerHTML = 
+document.querySelector('#header__news-feed').innerHTML = 
     `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> 
     &nbspPomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.`;
 
 setInterval(() => {
-    let message = document.querySelector('#content__header__news-feed');
+    let message = document.querySelector('#header__news-feed');
 
     const messages = [
         '&nbspPomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.',
@@ -28,7 +28,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
     return res.json();
 })
 .then(data => {
-    const cardList = document.querySelector('#content__food__cards');
+    const cardList = document.querySelector('#food__cards');
     let cards = '';
 
     data.forEach(element => {
@@ -38,8 +38,8 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                 <div class="card-body">
                     <h5 class="card-title text-dark" id="card-body__name">${element.name}</h5>
                     <div>Price: <p class="card-text text-dark" id="card-body__price">${element.price}</p> $</div>
-                    <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${element.id}" id="content__food__cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
-                    <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
+                    <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${element.id}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                    <button href="" class="btn cards__root-buttons" onclick="deleteFood(this)" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                     <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                 </div>
             </div>                    
@@ -77,12 +77,12 @@ const hideWarningMessage = () => {
 }
 
 const rootControls = () => {
-    let cards = document.querySelectorAll('.content__food__cards__root-buttons');
+    let cards = document.querySelectorAll('.cards__root-buttons');
     let orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
-    document.querySelector('#content__food__root-button').style.display = 'block';
-    document.querySelector('#content__navbar__navbar-collapse__login-button').style.display = 'none';
-    document.querySelector('#content__navbar__navbar-collapse__logout-button').style.display = 'inline-block';
-    document.querySelector('#content__food__order-button').style.display = 'none';
+    document.querySelector('#food__root-button').style.display = 'block';
+    document.querySelector('#navbar-collapse__login-button').style.display = 'none';
+    document.querySelector('#navbar-collapse__logout-button').style.display = 'inline-block';
+    document.querySelector('#food__order-button').style.display = 'none';
 
     for (let i = 0; i < orderFoodButtons.length; i++) {
         orderFoodButtons[i].style.display = 'none';
@@ -96,12 +96,12 @@ const rootControls = () => {
 }
 
 const logout = () => {
-    let cards = document.querySelectorAll('.content__food__cards__root-buttons');
+    let cards = document.querySelectorAll('.cards__root-buttons');
     let orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
-    document.querySelector('#content__food__root-button').style.display = 'none';;
-    document.querySelector('#content__navbar__navbar-collapse__login-button').style.display = 'inline-block';
-    document.querySelector('#content__navbar__navbar-collapse__logout-button').style.display = 'none';
-    document.querySelector('#content__food__order-button').style.display = 'block';
+    document.querySelector('#food__root-button').style.display = 'none';;
+    document.querySelector('#navbar-collapse__login-button').style.display = 'inline-block';
+    document.querySelector('#navbar-collapse__logout-button').style.display = 'none';
+    document.querySelector('#food__order-button').style.display = 'block';
 
     for (let i = 0; i < orderFoodButtons.length; i++) {
         orderFoodButtons[i].style.display = 'block';
@@ -198,7 +198,7 @@ const editFood = () => {
 }
 
 const addFood = () => {
-    let foodCards = document.querySelector('#content__food__cards');
+    let foodCards = document.querySelector('#food__cards');
     let lastFoodId = 0;
 
     for (let i = 0; i < foodCards.children.length; i++) {
@@ -237,8 +237,8 @@ const addFood = () => {
                     <div class="card-body">
                         <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>
                         <div>Price: <p class="card-text text-dark" id="card-body__price">${foodAddedPrice}</p> KM</div>
-                        <a type="button" class="btn content__food__cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${lastFoodId}" id="content__food__cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
-                        <button href="" class="btn content__food__cards__root-buttons" onclick="deleteFood(this)" id="content__food__cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
+                        <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${lastFoodId}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                        <button href="" class="btn cards__root-buttons" onclick="deleteFood(this)" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                         <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)" style="display: none;"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                     </div>
                 </div>                    
@@ -246,7 +246,7 @@ const addFood = () => {
 
             foodCards.innerHTML += card;
 
-            let cards = document.querySelectorAll('.content__food__cards__root-buttons');
+            let cards = document.querySelectorAll('.cards__root-buttons');
             for (let i = 0; i < cards.length; i++) {
                 cards[i].style.display = 'inline-block';
             }

@@ -25,7 +25,7 @@
                     <button type="button" class="btn-close" id="login-form-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-body__login-form" onsubmit="loginCheck(this); return false;" class="w-100">
+                    <form id="modal-body__login-form" onsubmit="loginCheck(this); return false;">
                         <div class="mb-3">
                           <label for="username" class="form-label">Username</label>
                           <input type="text" class="form-control" id="username" placeholder="Enter your username..." required>
@@ -97,7 +97,7 @@
                             <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite link od slike..." required>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-main">Add</button>
+                            <button type="submit" class="btn btn-main">Add food</button>
                         </div>
                     </form>
                     <p style="display: none;" id="warning-message" class="text-danger"></p>
@@ -113,9 +113,9 @@
                     <h5 class="modal-title" id="exampleModalLabel">Order food</h5>
                     <button type="button" class="btn-close" id="order-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" class="w-100">
                     <ul class="list-group" id="modal-body__ordered-foods"></ul>
-                    Ukupna cijena: <p id="modal-body__ordered-food-price"></p><br>
+                    Ukupna cijena: <p id="modal-body__ordered-food-price">0</p><br>
                     <form id="modal-body__customer-form" onsubmit="orderFood(this); return false;">
                         <div class="mb-3">
                             <label for="customer-name" class="col-form-label">Full name:</label>
@@ -129,8 +129,8 @@
                             <label for="customer-phone-number" class="col-form-label">Phone number:</label>
                             <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite broj telefona..." required>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-main">Add</button>
+                        <div class="modal-footer w-100">
+                            <button type="submit" class="btn btn-main">Order food</button>
                         </div>
                     </form>
                     <p style="display: none;" id="warning-message" class="text-danger"></p>
@@ -142,14 +142,14 @@
     <div id="content">
 
         <div id="content__header" class="text-light">
-            <span id="content__header__news-feed"></span>
+            <span id="header__news-feed"></span>
         </div>
 
         <div id="content__welcome-section">
-            <div id="content__welcome-section__logo">
+            <div id="welcome-section__logo">
                 <p class="text-dark h1"><span style="color: #38d9a9">M</span><span class="text-dark">inty</span></p>
             </div>
-            <p id="content__welcome-section__greetings">Naš cilj je omogućiti nevjerojatan okus po pristupačnim cijenama u gostoljubivoj i modernoj atmosferi..</p>
+            <p id="welcome-section__greetings">Naš cilj je omogućiti nevjerojatan okus po pristupačnim cijenama u gostoljubivoj i modernoj atmosferi..</p>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light" id="content__navbar">
@@ -174,19 +174,19 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#login-form" data-bs-whatever="@getbootstrap" id="content__navbar__navbar-collapse__login-button">Prijava</a>
-                        <a href="#" class="btn" style="background-color: #38d9a9; display: none;" onclick="logout()" id="content__navbar__navbar-collapse__logout-button"><span class="text-light">Odjava</span></a>
+                        <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#login-form" data-bs-whatever="@getbootstrap" id="navbar-collapse__login-button">Prijava</a>
+                        <a href="#" class="btn" style="background-color: #38d9a9; display: none;" onclick="logout()" id="navbar-collapse__logout-button"><span class="text-light">Odjava</span></a>
                     </form>
                 </div>
             </div>
         </nav>
 
         <div id="content__food">
-            <h1 id="content__food__heading" class="text-dark h3">Hrana</h1><br>
-            <div id="content__food__cards"></div>
+            <h1 id="food__heading" class="text-dark h3">Hrana</h1><br>
+            <div id="food__cards"></div>
             <br>
-            <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#add-food-form" data-bs-whatever="@getbootstrap" id="content__food__root-button"><i class="fa-solid fa-plus"></i> Add food</a>
-            <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#order-food-form" data-bs-whatever="@getbootstrap" id="content__food__order-button"><i class="fa fa-cart-arrow-down"></i> Open cart</a>
+            <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#add-food-form" data-bs-whatever="@getbootstrap" id="food__root-button"><i class="fa-solid fa-plus"></i> Add food</a>
+            <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#order-food-form" data-bs-whatever="@getbootstrap" id="food__order-button"><i class="fa fa-cart-arrow-down"></i> Open cart</a>
         </div>
 
         <p class="h3 text-center text-dark">What other thinks about us ?</p>
@@ -196,7 +196,7 @@
                 <div class="carousel-item active">
                     <div class="carousel-card">
                         <div class="carousel-card__photo-container">
-                            <img src="./img/dave.jpg" alt="Dave" class="carousel-card__photo-container__photo">
+                            <img src="./img/dave.jpg" alt="Dave" class="photo-container__photo">
                         </div>
                         <div class="carousel-card__text-container">
                             <p class="h1">Dave</p>
@@ -208,7 +208,7 @@
                 <div class="carousel-item">
                     <div class="carousel-card">
                         <div class="carousel-card__photo-container">
-                            <img src="./img/alice.jpg" alt="Alice" class="carousel-card__photo-container__photo">
+                            <img src="./img/alice.jpg" alt="Alice" class="photo-container__photo">
                         </div>
                         <div class="carousel-card__text-container">
                             <p class="h1">Alice</p>
@@ -220,7 +220,7 @@
                 <div class="carousel-item">
                     <div class="carousel-card">
                         <div class="carousel-card__photo-container">
-                            <img src="./img/john.jpg" alt="John" class="carousel-card__photo-container__photo">
+                            <img src="./img/john.jpg" alt="John" class="photo-container__photo">
                         </div>
                         <div class="carousel-card__text-container">
                             <p class="h1">John</p>
@@ -232,7 +232,7 @@
                 <div class="carousel-item">
                     <div class="carousel-card">
                         <div class="carousel-card__photo-container">
-                            <img src="./img/tamara.jpg" alt="Tamara" class="carousel-card__photo-container__photo">
+                            <img src="./img/tamara.jpg" alt="Tamara" class="photo-container__photo">
                         </div>
                         <div class="carousel-card__text-container">
                             <p class="h1">Tamara</p>
@@ -259,16 +259,16 @@
         </div>
 
         <div id="content__footer">
-            <p class="content__footer__container__heading h2"><span style="color: #38d9a9">M</span><span class="text-light">inty</span></p>
-            <p class="content__footer__container__text text-light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis voluptatibus illum temporibus sint aut, dicta, cum dolore incidunt illo sapiente quam nam delectus ad labore accusantium quibusdam aspernatur amet saepe.</p>
-            <div class="content__footer__container__social-links">
-                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" class="content__footer__container__social-links__link"><i class="fa-brands fa-skype"></i></a>
+            <p class="container__heading h2"><span style="color: #38d9a9">M</span><span class="text-light">inty</span></p>
+            <p class="container__text text-light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis voluptatibus illum temporibus sint aut, dicta, cum dolore incidunt illo sapiente quam nam delectus ad labore accusantium quibusdam aspernatur amet saepe.</p>
+            <div class="container__social-links">
+                <a href="#" class="social-links__link"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="social-links__link"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="social-links__link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-links__link"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="social-links__link"><i class="fa-brands fa-skype"></i></a>
             </div>
-            <div id="content__footer__container__copyright-credits" class="text-light">
+            <div id="container__copyright-credits" class="text-light">
                 &copy; Copyright <strong><span style="color: #38d9a9">M</span><span class="text-light">inty</span></strong>. All Rights Reserved<br>
                 Designed by Zijad Doglod
             </div>
