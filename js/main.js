@@ -1,8 +1,7 @@
 let counterForNewsMessage = 0;
-let root = false;
 
 document.querySelector('#header__news-feed').innerHTML = 
-    `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> 
+    `<i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i> 
     &nbspPomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.`;
 
 setInterval(() => {
@@ -16,7 +15,7 @@ setInterval(() => {
         '&nbspŽelite vidjeti source kod naše stranice ? Nema problema, pritisnite&nbsp<a href="https://github.com/zijadddd/Minty" class="links">ovdje</a> !'
     ];
 
-    message.innerHTML = `<i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i><i class="fa-solid fa-fire"></i> `
+    message.innerHTML = `<i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i> `
                         + messages[(counterForNewsMessage = (counterForNewsMessage+1) % messages.length)];
 }, 5000);
 
@@ -38,7 +37,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                 <div class="card-body">
                     <h5 class="card-title text-dark" id="card-body__name">${element.name}</h5>
                     <div>Price: <p class="card-text text-dark" id="card-body__price">${element.price}</p> $</div>
-                    <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${element.id}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                    <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" onclick="fillEditData(${element.id})" data-bs-whatever="${element.id}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                     <button href="" class="btn cards__root-buttons" onclick="deleteFood(this)" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                     <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                 </div>
@@ -91,8 +90,6 @@ const rootControls = () => {
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'inline-block';
     }
-
-    root = true;
 }
 
 const logout = () => {
@@ -112,13 +109,12 @@ const logout = () => {
     }
 
     popup('Uspješno ste odjavljeni !');
-    root = false;
 }
 
 const popup = (message) => {
     let popup = document.querySelector('#info-pop-up');
 
-    popup.innerText = message;
+    popup.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
     popup.style.display = 'block';
 
     setTimeout(() => {
@@ -129,7 +125,7 @@ const popup = (message) => {
 const errorPopup = (message) => {
     let popup = document.querySelector('#error-pop-up');
 
-    popup.innerText = message;
+    popup.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${message}`;
     popup.style.display = 'block';
 
     setTimeout(() => {
@@ -154,6 +150,19 @@ const deleteFood = (food) => {
             errorPopup(`Nije moguce obrisati hranu sa ID-em ${foodId}`);
         }
     })
+}
+
+const fillEditData = (foodId) => {
+    const food = document.getElementById(foodId);
+    const foodFormId = document.getElementById('food-edit-id');
+    const foodFormName = document.getElementById('food-edit-name');
+    const foodFormImage = document.getElementById('food-edit-imageUrl');
+    const foodFormPrice = document.getElementById('food-edit-price');
+
+    foodFormId.value = food.id;
+    foodFormName.value = food.children[1].children[0].innerText;
+    foodFormImage.value = food.children[0].src;
+    foodFormPrice.value = food.children[1].children[1].children[0].innerText;
 }
 
 let editFoodForm = document.querySelector('#edit-food-form');
@@ -237,7 +246,7 @@ const addFood = () => {
                     <div class="card-body">
                         <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>
                         <div>Price: <p class="card-text text-dark" id="card-body__price">${foodAddedPrice}</p> KM</div>
-                        <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" data-bs-whatever="${lastFoodId}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+                        <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" onclick="fillEditData(${lastFoodId})" data-bs-whatever="${lastFoodId}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                         <button href="" class="btn cards__root-buttons" onclick="deleteFood(this)" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                         <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)" style="display: none;"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                     </div>
@@ -269,6 +278,8 @@ const putFoodInOrder = (food) => {
 
     price = parseFloat(price);
 
+    popup(`Hrana ${foodName} je uspješno dodana u korpu !`);
+
     let order = `
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Name: ${foodName} ${foodPrice}
@@ -292,5 +303,7 @@ const orderFood = () => {
         popup('Uspješno ste naručili hranu, biti će za par minuta kod VAS ! Ostanite uz Minty :)');
         document.querySelector('#modal-body__ordered-foods').innerHTML = '';
         document.querySelector('#modal-body__ordered-food-price').innerHTML = '0';
+        document.querySelector('#modal-body__customer-form').reset();
+        document.querySelector('#order-food-close-button').click();
     }
 }
