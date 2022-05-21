@@ -39,7 +39,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                     <h5 class="card-title text-dark" id="card-body__name">${element.name}</h5>
                     <div>Price: <p class="card-text text-dark" id="card-body__price">${element.price}</p> $</div>
                     <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" onclick="fillEditData(${element.id})" data-bs-whatever="${element.id}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
-                    <button href="" class="btn cards__root-buttons" onclick="deleteFood(this)" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
+                    <button href="" class="btn cards__root-buttons" onclick="deleteFood(${element.id})" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                     <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                 </div>
             </div>                    
@@ -134,9 +134,7 @@ const errorPopup = (message) => {
     }, 2000);
 }
 
-const deleteFood = (food) => {
-    let foodId = food.parentElement.parentElement.id;
-    
+const deleteFood = (foodId) => {
     fetch(`https://ptf-web-dizajn-2022.azurewebsites.net/api/Food/${foodId}`, {
         method: 'DELETE'
     })
@@ -248,7 +246,7 @@ const addFood = () => {
                         <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>
                         <div>Price: <p class="card-text text-dark" id="card-body__price">${foodAddedPrice}</p> KM</div>
                         <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" onclick="fillEditData(${lastFoodId})" data-bs-whatever="${lastFoodId}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
-                        <button href="" class="btn cards__root-buttons" onclick="deleteFood(this)" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
+                        <button href="" class="btn cards__root-buttons" onclick="deleteFood(${lastFoodId})" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                         <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)" style="display: none;"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
                     </div>
                 </div>                    
