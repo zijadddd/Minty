@@ -2,17 +2,18 @@ let counterForNewsMessage = 0;
 
 document.querySelector('#header__news-feed').innerHTML = 
     `<i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i> 
-    &nbspPomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.`;
+    &nbspThe food at your doorstep`;
 
 setInterval(() => {
     let message = document.querySelector('#header__news-feed');
 
     const messages = [
-        '&nbspPomoći građanima Zenice da žive bolje omogućavajući da zdrava hrana bude jeftina i pristupačna.',
-        '&nbspPorcija u svakoj ruci.',
-        '&nbspBudi inspiriran da napraviš razliku komad po komad pizze.',
-        '&nbspNaša misija je stvoriti zdravije društvo povezujući ljude s pravom hranom.',
-        '&nbspŽelite vidjeti source kod naše stranice ? Nema problema, pritisnite&nbsp<a href="https://github.com/zijadddd/Minty" class="links">ovdje</a> !'
+        '&nbspThe food at your doorstep',
+        '&nbspWhy starve when you have&nbsp<strong><span style="color: #38d9a9">M</span><span class="text-light">inty</span></strong>',
+        '&nbspDon’t starve, just order',
+        '&nbspYummy food which will please you time, money, and tummy',
+        '&nbspWe will rescue you from the aggression of hunger',
+        '&nbspYou want to see our source code ? No problem, click&nbsp<a href="https://github.com/zijadddd/Minty" class="links">here</a> !'
     ];
 
     message.innerHTML = `<i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i> `
@@ -56,17 +57,17 @@ const loginCheck = () => {
         if (loginPassword === 'root') {
             document.querySelector('#login-form-close-button').click();
             rootControls();
-            popup('Uspješno ste prijavljeni !');
+            popup('You have successfully logged in !');
             document.querySelector('#modal-body__login-form').reset();
         } else {
             let warningMessage = document.querySelector('#warning-message');
             warningMessage.style.display = 'block';
-            warningMessage.innerText = 'Nepravilna lozinka.';
+            warningMessage.innerText = 'Invalid password.';
         }
     } else {
         let warningMessage = document.querySelector('#warning-message');
         warningMessage.style.display = 'block';
-        warningMessage.innerText = 'Nepravilan username';
+        warningMessage.innerText = 'Invalid username';
     }
 }
 
@@ -108,7 +109,7 @@ const logout = () => {
         cards[i].style.display = 'none';
     }
 
-    popup('Uspješno ste odjavljeni !');
+    popup('You have successfully logged out !');
 }
 
 const popup = (message) => {
@@ -145,9 +146,9 @@ const deleteFood = (food) => {
             
             let foodCard = document.getElementById(foodId);
             foodCard.remove();
-            popup(`Hrana sa ID-em ${foodId} je uspješno obrisana !`);
+            popup(`Food with ID: ${foodId} is successfully deleted !`);
         } else {
-            errorPopup(`Nije moguce obrisati hranu sa ID-em ${foodId}`);
+            errorPopup(`Unable to delete food with ID: ${foodId}`);
         }
     })
 }
@@ -196,12 +197,12 @@ const editFood = () => {
 
             let foodCard = document.getElementById(foodId);
             foodCard.children[1].firstElementChild.innerText = foodName;
-            foodCard.children[1].children[1].innerText = `Price: ${foodPrice} KM`;
+            foodCard.children[1].children[1].children[0].innerText = foodPrice;
             foodCard.children[0].src = foodImageUrl;
 
-            popup(`Hrana sa ID-em ${foodId} je uspješno uređena !`);
+            popup(`Food with ID: ${foodId} is successfully edited !`);
         } else {
-            errorPopup('Nije moguće urediti hranu !');
+            errorPopup(`Unable to edit food with ID: ${foodId} !`);
         }
     })
 }
@@ -260,9 +261,9 @@ const addFood = () => {
                 cards[i].style.display = 'inline-block';
             }
 
-            popup(`Hrana sa ID-em ${lastFoodId + 1} je uspješno dodana !`);
+            popup(`Food with ID: ${foodId} is successfully added !`);
         } else {
-            errorPopup('Nije moguće dodati hranu !');
+            errorPopup('Unable to add food !');
         }
     })
 }
@@ -278,7 +279,7 @@ const putFoodInOrder = (food) => {
 
     price = parseFloat(price);
 
-    popup(`Hrana ${foodName} je uspješno dodana u korpu !`);
+    popup(`Food ${foodName} is successfully added to cart !`);
 
     let order = `
         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -296,11 +297,11 @@ const orderFood = () => {
     let priceContainer = document.querySelector('#modal-body__ordered-food-price').innerText;
 
     if(priceContainer == 0) {
-        errorPopup('Ne možete naručiti jer niste ubacili ništa u korpu !');
+        errorPopup('Unable to order food because cart is empty !');
         document.querySelector('#modal-body__customer-form').reset();
         document.querySelector('#order-food-close-button').click();
     } else {
-        popup('Uspješno ste naručili hranu, biti će za par minuta kod VAS ! Ostanite uz Minty :)');
+        popup('You have successfully ordered food. It will be with you in a few minutes ! Stay with Minty :)');
         document.querySelector('#modal-body__ordered-foods').innerHTML = '';
         document.querySelector('#modal-body__ordered-food-price').innerHTML = '0';
         document.querySelector('#modal-body__customer-form').reset();

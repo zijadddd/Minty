@@ -20,7 +20,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Prijava</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
                     <button type="button" class="btn-close" id="login-form-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
                 </div>
                 <div class="modal-body">
@@ -89,15 +89,15 @@
                     <form id="modal-body__add-food-form" onsubmit="addFood(this); return false;">
                         <div class="mb-3">
                             <label for="food-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite ime..." required>
+                            <input type="text" class="form-control" id="food-add-name" placeholder="Enter name..." required>
                         </div>
                         <div class="mb-3">
                             <label for="food-price" class="col-form-label">Price:</label>
-                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite cijenu..." required>
+                            <input type="text" class="form-control" id="food-add-price" placeholder="Enter price..." required>
                         </div>
                         <div class="mb-3">
                             <label for="food-imageUrl" class="col-form-label">Image url:</label>
-                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite link od slike..." required>
+                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Enter link of image..." required>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-main"><i class="fa-solid fa-plus"></i> Add food</button>
@@ -122,15 +122,15 @@
                     <form id="modal-body__customer-form" onsubmit="orderFood(this); return false;">
                         <div class="mb-3">
                             <label for="customer-name" class="col-form-label">Full name:</label>
-                            <input type="text" class="form-control" id="food-add-name" placeholder="Unesite ime i prezime..." required>
+                            <input type="text" class="form-control" id="food-add-name" placeholder="Enter your full name..." required>
                         </div>
                         <div class="mb-3">
                             <label for="customer-address" class="col-form-label">Address:</label>
-                            <input type="text" class="form-control" id="food-add-price" placeholder="Unesite adresu..." required>
+                            <input type="text" class="form-control" id="food-add-price" placeholder="Enter your address..." required>
                         </div>
                         <div class="mb-3">
                             <label for="customer-phone-number" class="col-form-label">Phone number:</label>
-                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Unesite broj telefona..." required>
+                            <input type="text" class="form-control" id="food-add-imageUrl" placeholder="Enter your phone number..." required>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-main"><i class="fa fa-cart-arrow-down"></i> Order food</button>
@@ -152,7 +152,7 @@
             <div id="welcome-section__logo">
                 <p class="text-dark h1"><span style="color: #38d9a9">M</span><span class="text-dark">inty</span></p>
             </div>
-            <p id="welcome-section__greetings">Naš cilj je omogućiti nevjerojatan okus po pristupačnim cijenama u gostoljubivoj i modernoj atmosferi..</p>
+            <p id="welcome-section__greetings">Relaxing and thinking of the best food will always make you remember us</p>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light" id="content__navbar">
@@ -177,15 +177,15 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#login-form" data-bs-whatever="@getbootstrap" id="navbar-collapse__login-button"><i class="fa fa-sign-in" aria-hidden="true"></i> Prijava</a>
-                        <a href="#" class="btn btn-main" style="display: none;" onclick="logout()" id="navbar-collapse__logout-button"><span class="text-light"><i class="fa fa-sign-out" aria-hidden="true"></i> Odjava</span></a>
+                        <a type="button" class="btn btn-main" data-bs-toggle="modal" data-bs-target="#login-form" data-bs-whatever="@getbootstrap" id="navbar-collapse__login-button"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                        <a href="#" class="btn btn-main" style="display: none;" onclick="logout()" id="navbar-collapse__logout-button"><span class="text-light"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</span></a>
                     </form>
                 </div>
             </div>
         </nav>
 
         <div id="content__food">
-            <h1 id="food__heading" class="text-dark h3">Hrana</h1><br>
+            <h1 id="food__heading" class="text-dark h3">Food</h1><br>
             <div id="food__cards"></div>
             <br>
             <div id="food__buttons">
@@ -260,12 +260,12 @@
         <p class="h3 text-center pt-4"><span style="color: #38d9a9">M</span><span class="text-dark">inty's location</span></p>
 
         <div id="content__location">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2860.387012741559!2d17.90177878739272!3d44.199094974586004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ee2423fa0fbaf%3A0xd5caf50678c02195!2sPolitehni%C4%8Dki%20fakultet%20Univerziteta%20u%20Zenici!5e0!3m2!1sen!2sba!4v1652832841690!5m2!1sen!2sba" width="50%" height="400" style="border-radius: 15px; margin: 2% 0 0 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2860.387012741559!2d17.90177878739272!3d44.199094974586004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475ee2423fa0fbaf%3A0xd5caf50678c02195!2sPolitehni%C4%8Dki%20fakultet%20Univerziteta%20u%20Zenici!5e0!3m2!1sen!2sba!4v1652832841690!5m2!1sen!2sba" width="100%" height="100%" style="border-radius: 15px; margin: 2% 0 0 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div id="content__footer" class="p-4">
             <p class="container__heading h2"><span style="color: #38d9a9">M</span><span class="text-light">inty</span></p>
-            <p class="container__text text-light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis voluptatibus illum temporibus sint aut, dicta, cum dolore incidunt illo sapiente quam nam delectus ad labore accusantium quibusdam aspernatur amet saepe.</p>
+            <p class="container__text text-light">We will be your best friend with a bag of good foods when you are hungry.</p>
             <div class="container__social-links">
                 <a href="#" class="social-links__link"><i class="fa-brands fa-twitter link__i"></i></a>
                 <a href="#" class="social-links__link"><i class="fa-brands fa-facebook link__i"></i></a>
