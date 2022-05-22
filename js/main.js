@@ -137,7 +137,7 @@ const deleteFood = (foodId) => {
         console.log(`Status code: ${res.status}`);
 
         if (res.ok) {
-            let foodCard = document.getElementById(foodId);
+            let foodCard = document.querySelector(`[id = '${foodId}']`);
             foodCard.remove();
             popup(`Food with ID: ${foodId} is successfully deleted !`);
         } else {
@@ -147,11 +147,11 @@ const deleteFood = (foodId) => {
 }
 
 const fillEditData = (foodId) => {
-    const food = document.getElementById(foodId);
-    const foodFormId = document.getElementById('food-edit-id');
-    const foodFormName = document.getElementById('food-edit-name');
-    const foodFormImage = document.getElementById('food-edit-imageUrl');
-    const foodFormPrice = document.getElementById('food-edit-price');
+    const food = document.querySelector(`[id = '${foodId}']`);
+    const foodFormId = document.querySelector('#food-edit-id');
+    const foodFormName = document.querySelector('#food-edit-name');
+    const foodFormImage = document.querySelector('#food-edit-imageUrl');
+    const foodFormPrice = document.querySelector('#food-edit-price');
 
     foodFormId.value = food.id;
     foodFormName.value = food.children[1].children[0].innerText;
@@ -188,7 +188,7 @@ const editFood = () => {
         console.log(`Status code: ${res.status}`);
 
         if (res.ok) {
-            let foodCard = document.getElementById(foodId);
+            let foodCard = document.querySelector(`[id = '${foodId}']`);
             foodCard.children[1].firstElementChild.innerText = foodName;
             foodCard.children[1].children[1].children[0].innerText = foodPrice;
             foodCard.children[0].src = foodImageUrl;
@@ -205,7 +205,7 @@ const addFood = () => {
     let lastFoodId = 0;
 
     for (let i = 0; i < foodCards.children.length; i++) {
-        if (!document.getElementById(i)) {
+        if (!document.querySelector(`[id = '${i}']`)) {
             lastFoodId = i;
             break;
         } else {
@@ -263,7 +263,7 @@ const addFood = () => {
 
 const putFoodInOrder = (food) => {
     const foodId = food.parentElement.parentElement.id;
-    const foodCard = document.getElementById(foodId);
+    const foodCard = document.querySelector(`[id = '${foodId}']`);
     const foodName = foodCard.children[1].firstElementChild.innerText;
     const foodPrice = foodCard.children[1].children[1].children[0].innerText;
     const foodOrder = document.querySelector('#modal-body__ordered-foods');
