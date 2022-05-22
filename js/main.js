@@ -37,7 +37,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
                 <img src="${element.imageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 13rem;" id="card__image">
                 <div class="card-body">
                     <h5 class="card-title text-dark" id="card-body__name">${element.name}</h5>
-                    <div>Price: <p class="card-text text-dark" id="card-body__price">${element.price}</p> $</div>
+                    <div>Price: <p class="card-text text-dark" id="card-body__price">${element.price}</p>$</div>
                     <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" onclick="fillEditData(${element.id})" data-bs-whatever="${element.id}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                     <button href="" class="btn cards__root-buttons" onclick="deleteFood(${element.id})" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                     <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
@@ -139,9 +139,9 @@ const deleteFood = (foodId) => {
         method: 'DELETE'
     })
     .then(res => {
+        console.log(`Status code: ${res.status}`);
+
         if (res.ok) {
-            console.log(`Status code: ${res.status}`);
-            
             let foodCard = document.getElementById(foodId);
             foodCard.remove();
             popup(`Food with ID: ${foodId} is successfully deleted !`);
@@ -190,9 +190,9 @@ const editFood = () => {
         })
     })
     .then(res => {
-        if (res.ok) {
-            console.log(`Status code: ${res.status}`);
+        console.log(`Status code: ${res.status}`);
 
+        if (res.ok) {
             let foodCard = document.getElementById(foodId);
             foodCard.children[1].firstElementChild.innerText = foodName;
             foodCard.children[1].children[1].children[0].innerText = foodPrice;
@@ -236,15 +236,15 @@ const addFood = () => {
         })
     })
     .then(res => {
-        if (res.ok) {
-            console.log(`Status code: ${res.status}`);
+        console.log(`Status code: ${res.status}`);
 
+        if (res.ok) {
             let card = `
                 <div class="card" style="width: 18rem; height: auto; margin: 0 20px; margin-top: 20px;" id="${lastFoodId}">
                     <img src="${foodAddedImageUrl}" class="card-img-top" alt="..." style="width: 100%; height: 13rem;" id="card__image">
                     <div class="card-body">
                         <h5 class="card-title text-dark" id="card-body__name">${foodAddedName}</h5>
-                        <div>Price: <p class="card-text text-dark" id="card-body__price">${foodAddedPrice}</p> KM</div>
+                        <div>Price: <p class="card-text text-dark" id="card-body__price">${foodAddedPrice}</p>$</div>
                         <a type="button" class="btn cards__root-buttons text-light" data-bs-toggle="modal" data-bs-target="#edit-food-form" onclick="fillEditData(${lastFoodId})" data-bs-whatever="${lastFoodId}" id="cards__root-buttons-edit"><i class="fa-solid fa-pen"></i> Edit</a>
                         <button href="" class="btn cards__root-buttons" onclick="deleteFood(${lastFoodId})" id="cards__root-buttons-delete"> <span class="text-light"><i class="fa-solid fa-trash-can"></i> Delete</span></button>
                         <button href="" class="btn btn-main card-body__add-to-cart" onclick="putFoodInOrder(this)" style="display: none;"><span class="text-light"><i class="fa-solid fa-cart-arrow-down"></i> Add to cart</span></button>
