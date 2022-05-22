@@ -219,6 +219,7 @@
     z-index: 101;
     display: none;
     animation: fadeIn linear 0.5s;
+    text-align: center;
 }
 
 @keyframes fadeIn {
