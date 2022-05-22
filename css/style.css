@@ -31,6 +31,11 @@
     .pop-up {
         text-align: center;
     }
+
+    #welcome-section__greetings {
+        text-align: center;
+        padding: 0 1%;
+    }    
 }
   
 
@@ -123,15 +128,6 @@
 .btn-main:hover {
     background-color: #20c997;
     color: white;
-}
-
-.links {
-    color: #38d9a9;
-}
-
-.links:hover {
-    color: white;
-    transition-duration: 0.3s;
 }
 
 #content__header {

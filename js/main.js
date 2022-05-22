@@ -2,18 +2,18 @@ let counterForNewsMessage = 0;
 
 document.querySelector('#header__news-feed').innerHTML = 
     `<i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i> 
-    &nbspThe food at your doorstep`;
+    &nbspThe food at your doorstep.`;
 
 setInterval(() => {
-    let message = document.querySelector('#header__news-feed');
+    const message = document.querySelector('#header__news-feed');
 
     const messages = [
-        '&nbspThe food at your doorstep',
-        '&nbspWhy starve when you have&nbsp<strong><span style="color: #38d9a9">M</span><span class="text-light">inty</span></strong>',
-        '&nbspDon’t starve, just order',
-        '&nbspYummy food which will please you time, money, and tummy',
-        '&nbspWe will rescue you from the aggression of hunger',
-        '&nbspYou want to see our source code ? No problem, click&nbsp<a href="https://github.com/zijadddd/Minty" class="links">here</a> !'
+        '&nbspThe food at your doorstep.',
+        '&nbspWhy starve when you have&nbsp<strong><span style="color: #38d9a9">M</span><span class="text-light">inty</span></strong>.',
+        '&nbspDon’t starve, just order.',
+        '&nbspWe will make your mood.',
+        '&nbspHunger gives stress; we give food.',
+        '&nbspDelivering happiness.'
     ];
 
     message.innerHTML = `<i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i><i class="fa-solid fa-fire news-feed__i"></i> `
@@ -23,7 +23,7 @@ setInterval(() => {
 fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 .then(res => {
     if(!res.ok) {
-        throw Error('[GRESKA] Dogodila se greska.');
+        throw Error('[ERROR] It is not possible to load food from API.');
     } 
     return res.json();
 })
@@ -50,8 +50,8 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 })
 
 const loginCheck = () => {
-    let loginUsername = document.querySelector('#username').value;
-    let loginPassword = document.querySelector('#password').value;
+    const loginUsername = document.querySelector('#username').value;
+    const loginPassword = document.querySelector('#password').value;
 
     if (loginUsername === 'root') {
         if (loginPassword === 'root') {
@@ -60,25 +60,20 @@ const loginCheck = () => {
             popup('You have successfully logged in !');
             document.querySelector('#modal-body__login-form').reset();
         } else {
-            let warningMessage = document.querySelector('#warning-message');
+            const warningMessage = document.querySelector('#warning-message');
             warningMessage.style.display = 'block';
             warningMessage.innerText = 'Invalid password.';
         }
     } else {
-        let warningMessage = document.querySelector('#warning-message');
+        const warningMessage = document.querySelector('#warning-message');
         warningMessage.style.display = 'block';
         warningMessage.innerText = 'Invalid username';
     }
 }
 
-const hideWarningMessage = () => {
-    let warningMessage = document.querySelector('#warning-message');
-    warningMessage.style.display = 'none';
-}
-
 const rootControls = () => {
-    let cards = document.querySelectorAll('.cards__root-buttons');
-    let orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
+    const cards = document.querySelectorAll('.cards__root-buttons');
+    const orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
     document.querySelector('#food__root-button').style.display = 'block';
     document.querySelector('#navbar-collapse__login-button').style.display = 'none';
     document.querySelector('#navbar-collapse__logout-button').style.display = 'inline-block';
@@ -94,8 +89,8 @@ const rootControls = () => {
 }
 
 const logout = () => {
-    let cards = document.querySelectorAll('.cards__root-buttons');
-    let orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
+    const cards = document.querySelectorAll('.cards__root-buttons');
+    const orderFoodButtons = document.querySelectorAll('.card-body__add-to-cart');
     document.querySelector('#food__root-button').style.display = 'none';;
     document.querySelector('#navbar-collapse__login-button').style.display = 'inline-block';
     document.querySelector('#navbar-collapse__logout-button').style.display = 'none';
@@ -113,25 +108,25 @@ const logout = () => {
 }
 
 const popup = (message) => {
-    let popup = document.querySelector('#info-pop-up');
+    const popup = document.querySelector('#info-pop-up');
 
     popup.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
     popup.style.display = 'block';
 
     setTimeout(() => {
         popup.style.display = 'none';
-    }, 2000);
+    }, 3000);
 }
 
 const errorPopup = (message) => {
-    let popup = document.querySelector('#error-pop-up');
+    const popup = document.querySelector('#error-pop-up');
 
     popup.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${message}`;
     popup.style.display = 'block';
 
     setTimeout(() => {
         popup.style.display = 'none';
-    }, 2000);
+    }, 3000);
 }
 
 const deleteFood = (foodId) => {
@@ -164,7 +159,7 @@ const fillEditData = (foodId) => {
     foodFormPrice.value = food.children[1].children[1].children[0].innerText;
 }
 
-let editFoodForm = document.querySelector('#edit-food-form');
+const editFoodForm = document.querySelector('#edit-food-form');
 let foodId = 0;
 editFoodForm.addEventListener('show.bs.modal', (event) => {
     let editRootButton = event.relatedTarget;
@@ -172,9 +167,9 @@ editFoodForm.addEventListener('show.bs.modal', (event) => {
 });
 
 const editFood = () => {
-    let foodName = document.querySelector('#food-edit-name').value;
-    let foodPrice = document.querySelector('#food-edit-price').value;
-    let foodImageUrl = document.querySelector('#food-edit-imageUrl').value;
+    const foodName = document.querySelector('#food-edit-name').value;
+    const foodPrice = document.querySelector('#food-edit-price').value;
+    const foodImageUrl = document.querySelector('#food-edit-imageUrl').value;
 
     document.querySelector('#edit-food-close-button').click();
     document.querySelector('#modal-body__edit-food-form').reset();
@@ -206,7 +201,7 @@ const editFood = () => {
 }
 
 const addFood = () => {
-    let foodCards = document.querySelector('#food__cards');
+    const foodCards = document.querySelector('#food__cards');
     let lastFoodId = 0;
 
     for (let i = 0; i < foodCards.children.length; i++) {
@@ -218,9 +213,9 @@ const addFood = () => {
         }           
     }
 
-    let foodAddedName = document.querySelector('#food-add-name').value;
-    let foodAddedPrice = document.querySelector('#food-add-price').value;
-    let foodAddedImageUrl = document.querySelector('#food-add-imageUrl').value;
+    const foodAddedName = document.querySelector('#food-add-name').value;
+    const foodAddedPrice = document.querySelector('#food-add-price').value;
+    const foodAddedImageUrl = document.querySelector('#food-add-imageUrl').value;
 
     document.querySelector('#add-food-close-button').click();
     document.querySelector('#modal-body__add-food-form').reset();
@@ -254,7 +249,7 @@ const addFood = () => {
 
             foodCards.innerHTML += card;
 
-            let cards = document.querySelectorAll('.cards__root-buttons');
+            const cards = document.querySelectorAll('.cards__root-buttons');
             for (let i = 0; i < cards.length; i++) {
                 cards[i].style.display = 'inline-block';
             }
@@ -267,12 +262,12 @@ const addFood = () => {
 }
 
 const putFoodInOrder = (food) => {
-    let foodId = food.parentElement.parentElement.id;
-    let foodCard = document.getElementById(foodId);
-    let foodName = foodCard.children[1].firstElementChild.innerText;
-    let foodPrice = foodCard.children[1].children[1].children[0].innerText;
-    let foodOrder = document.querySelector('#modal-body__ordered-foods');
-    let priceContainer = document.querySelector('#modal-body__ordered-food-price');
+    const foodId = food.parentElement.parentElement.id;
+    const foodCard = document.getElementById(foodId);
+    const foodName = foodCard.children[1].firstElementChild.innerText;
+    const foodPrice = foodCard.children[1].children[1].children[0].innerText;
+    const foodOrder = document.querySelector('#modal-body__ordered-foods');
+    const priceContainer = document.querySelector('#modal-body__ordered-food-price');
     let price = priceContainer.innerText;
 
     price = parseFloat(price);
@@ -281,7 +276,7 @@ const putFoodInOrder = (food) => {
 
     let order = `
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            Name: ${foodName} ${foodPrice}
+            Name: ${foodName} Price: ${foodPrice}
         </li>        
     `;
 
@@ -292,7 +287,7 @@ const putFoodInOrder = (food) => {
 }
 
 const orderFood = () => {
-    let priceContainer = document.querySelector('#modal-body__ordered-food-price').innerText;
+    const priceContainer = document.querySelector('#modal-body__ordered-food-price').innerText;
 
     if(priceContainer == 0) {
         errorPopup('Unable to order food because cart is empty !');

@@ -21,7 +21,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                    <button type="button" class="btn-close" id="login-form-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                    <button type="button" class="btn-close" id="login-form-close-button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="modal-body__login-form" onsubmit="loginCheck(this); return false;">
@@ -48,7 +48,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit food</h5>
-                    <button type="button" class="btn-close" id="edit-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                    <button type="button" class="btn-close" id="edit-food-close-button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="modal-body__edit-food-form" onsubmit="editFood(this); return false;">
@@ -83,7 +83,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add food</h5>
-                    <button type="button" class="btn-close" id="add-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                    <button type="button" class="btn-close" id="add-food-close-button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="modal-body__add-food-form" onsubmit="addFood(this); return false;">
@@ -114,11 +114,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Order food</h5>
-                    <button type="button" class="btn-close" id="order-food-close-button" data-bs-dismiss="modal" aria-label="Close" onclick="hideWarningMessage()"></button>
+                    <button type="button" class="btn-close" id="order-food-close-button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" class="w-100">
                     <ul class="list-group" id="modal-body__ordered-foods"></ul>
-                    <div class="pt-2">Ukupna cijena: <p id="modal-body__ordered-food-price">0</p>$<br></div>
+                    <div class="pt-2">Price: <p id="modal-body__ordered-food-price">0</p>$<br></div>
                     <form id="modal-body__customer-form" onsubmit="orderFood(this); return false;">
                         <div class="mb-3">
                             <label for="customer-name" class="col-form-label">Full name:</label>
