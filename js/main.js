@@ -52,7 +52,7 @@ fetch('https://ptf-web-dizajn-2022.azurewebsites.net/api/Food')
 const loginCheck = () => {
     const loginUsername = document.querySelector('#username').value;
     const loginPassword = document.querySelector('#password').value;
-
+    hideWarningMessage();
     if (loginUsername === 'root') {
         if (loginPassword === 'root') {
             document.querySelector('#login-form-close-button').click();
@@ -86,6 +86,10 @@ const rootControls = () => {
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'inline-block';
     }
+}
+
+const hideWarningMessage = () => {
+    const warningMessage = document.querySelector('#warning-message').style.display = "none";
 }
 
 const logout = () => {
